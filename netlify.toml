@@ -3,6 +3,33 @@
   to = "/TPDC-Style4-Home.html"
   status = 200
 
+# Redirect old pages to unified About page
+[[redirects]]
+  from = "/TPDC-Style4-Services.html"
+  to = "/TPDC-Style4-About-Unified.html"
+  status = 301
+
+[[redirects]]
+  from = "/TPDC-Style4-Markets.html"
+  to = "/TPDC-Style4-About-Unified.html"
+  status = 301
+
+[[redirects]]
+  from = "/TPDC-Style4-About.html"
+  to = "/TPDC-Style4-About-Unified.html"
+  status = 301
+
+# Handle lowercase versions
+[[redirects]]
+  from = "/tpdc-style4-services.html"
+  to = "/TPDC-Style4-About-Unified.html"
+  status = 301
+
+[[redirects]]
+  from = "/tpdc-style4-services"
+  to = "/TPDC-Style4-About-Unified.html"
+  status = 301
+
 [[headers]]
   for = "/*"
   [headers.values]
