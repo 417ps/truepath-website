@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruePath | Minimal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #f5f5f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            transition: color 0.3s;
+            font-family: -apple-system, sans-serif;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+        }
+
+        .logo-mark {
+            font-size: 2rem;
+            font-weight: bold;
+            border: 2px solid #333;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: -apple-system, sans-serif;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: #fff;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><linearGradient id="g1" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" style="stop-color:%23666"/><stop offset="100%" style="stop-color:%23ccc"/></linearGradient></defs><rect fill="url(%23g1)" width="1200" height="400"/><polygon fill="%23999" points="0,400 600,100 1200,400"/></svg>') center/cover;
+            position: relative;
+        }
+
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+        }
+
+        .tagline {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+            font-family: -apple-system, sans-serif;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            font-family: -apple-system, sans-serif;
+            text-transform: uppercase;
+        }
+
+        .hero-subtitle {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-top: 1rem;
+            font-family: -apple-system, sans-serif;
+        }
+
+        .hero-subtitle span {
+            display: inline-block;
+            margin: 0 1rem;
+        }
+
+        /* Services Section */
+        .services-section {
+            background: #fff;
+            padding: 5rem 2rem;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '〜〜〜';
+            display: block;
+            margin-top: 1rem;
+            opacity: 0.3;
+        }
+
+        .services-intro {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #666;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .service-item {
+            text-align: center;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+        }
+
+        .service-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-family: -apple-system, sans-serif;
+            color: #666;
+        }
+
+        /* Dark Section */
+        .dark-section {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .dark-section h2 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 3rem;
+        }
+
+        .dark-section p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.8;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border: 1px solid #fff;
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            margin-top: 2rem;
+            transition: all 0.3s;
+            font-family: -apple-system, sans-serif;
+        }
+
+        .contact-btn:hover {
+            background: #fff;
+            color: #1a1a1a;
+        }
+
+        /* Clients Section */
+        .clients-section {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 4rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .client-logo {
+            text-align: center;
+            font-size: 1.5rem;
+            opacity: 0.5;
+            font-family: -apple-system, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: opacity 0.3s;
+        }
+
+        .client-logo:hover {
+            opacity: 1;
+        }
+
+        /* Quote Section */
+        .quote-section {
+            background: #fff;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: #666;
+        }
+
+        .quote-author {
+            font-size: 0.9rem;
+            color: #999;
+            font-style: normal;
+        }
+
+        /* Recent Work */
+        .recent-work {
+            background: #fff;
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .work-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .work-header h2 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .work-header::after {
+            content: '〜〜〜';
+            display: block;
+            margin-top: 1rem;
+            opacity: 0.3;
+        }
+
+        .work-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-family: -apple-system, sans-serif;
+        }
+
+        .work-tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            color: #666;
+            transition: all 0.3s;
+        }
+
+        .work-tab.active {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .work-item {
+            aspect-ratio: 4/3;
+            background: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .work-item:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .clients-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">SERVICES</a></li>
+                <li><a href="#">PORTFOLIO</a></li>
+            </ul>
+            <div class="logo-mark">T</div>
+            <ul class="nav-links">
+                <li><a href="#">ABOUT US</a></li>
+                <li><a href="#">JOURNAL</a></li>
+                <li><a href="#">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-image">
+            <div class="hero-text">
+                <p class="tagline">◆ WE ARE ◆</p>
+                <h1>TRUEPATH</h1>
+                <p class="hero-subtitle">
+                    <span>DESIGN</span> | <span>DEVELOPMENT</span> | <span>SUCCESS</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <h2 class="section-title">We design digital infrastructure.</h2>
+        <p class="services-intro">
+            Your brand, your product, your big idea, it is worth pursuing. We believe in creating opportunities for elite brands, intrepid startups, and passionate innovators to change the world.
+        </p>
+        <div class="services-grid">
+            <div class="service-item">
+                <div class="service-icon">💡</div>
+                <p class="service-label">IDEA</p>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">✕</div>
+                <p class="service-label">DESIGN</p>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">⚛</div>
+                <p class="service-label">DEVELOPMENT</p>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">🚀</div>
+                <p class="service-label">SUCCESS</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="dark-section">
+        <h2>We design<br>delightful digital<br>experiences</h2>
+        <p>
+            We help organizations radically improve their services and create new digital products. We combine a unique lean approach with our expertise of human behaviour and the principles of user-centred design.
+        </p>
+        <a href="#" class="contact-btn">CONTACT US</a>
+    </section>
+
+    <section class="clients-section">
+        <div class="clients-grid">
+            <div class="client-logo">LANL</div>
+            <div class="client-logo">SANDIA</div>
+            <div class="client-logo">META</div>
+            <div class="client-logo">DOE</div>
+            <div class="client-logo">FORTIS</div>
+            <div class="client-logo">INTEL</div>
+            <div class="client-logo">NASA</div>
+            <div class="client-logo">ORACLE</div>
+        </div>
+    </section>
+
+    <section class="quote-section">
+        <blockquote class="quote">
+            "Surround yourself with the dreamers and the doers, the believers and thinkers, but most of all surround yourself with those who see greatness within you, even when you don't see it yourself."
+        </blockquote>
+        <p class="quote-author">— Edmund Lee</p>
+    </section>
+
+    <section class="recent-work">
+        <div class="work-header">
+            <h2>Recent work</h2>
+        </div>
+        <div class="work-tabs">
+            <div class="work-tab active">ALL</div>
+            <div class="work-tab">ILLUSTRATION</div>
+            <div class="work-tab">DIGITAL ART</div>
+            <div class="work-tab">GRAPHIC DESIGN</div>
+            <div class="work-tab">WEB</div>
+        </div>
+        <div class="work-grid">
+            <div class="work-item"></div>
+            <div class="work-item"></div>
+            <div class="work-item"></div>
+            <div class="work-item"></div>
+            <div class="work-item"></div>
+            <div class="work-item"></div>
+        </div>
+    </section>
+</body>
+</html>

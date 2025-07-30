@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markets | TruePath Data Centers</title>
+    <style>
+        /* Anti-flash navigation protection - loads before any JS */
+        .global-nav,
+        .navbar,
+        nav {
+            background: rgba(10, 10, 10, 0.95) !important;
+            backdrop-filter: blur(20px) !important;
+        }
+        .global-nav *,
+        .navbar *,
+        nav * {
+            color: #b8b8b8 !important;
+            background: transparent !important;
+        }
+        .global-nav .nav-link:hover,
+        .global-nav .nav-link.active,
+        .navbar .nav-link:hover,
+        .navbar .nav-link.active,
+        nav .nav-link:hover,
+        nav .nav-link.active {
+            color: #d4af37 !important;
+        }
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #1a1a1a;
+            --accent-gold: #5DADE2;
+            --accent-blue: #5DADE2;
+            --text-primary: #ffffff;
+            --text-secondary: #666666;
+            --text-light: #b8b8b8;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: var(--primary-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            padding: 1rem 3rem;
+            background: rgba(26, 26, 26, 0.98);
+        }
+
+        nav.scrolled .logo img {
+            height: 35px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--accent-gold);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .page-hero {
+            position: relative;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            margin-top: 80px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23666" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 0 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 4rem;
+            font-weight: 200;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.2s forwards;
+        }
+
+        .page-hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.4s forwards;
+        }
+
+        /* Content Sections */
+        section {
+            padding: 6rem 3rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 200;
+            margin-bottom: 2rem;
+        }
+
+        /* Southwest Advantage Section */
+        .southwest-section {
+            background: #0a0a0a;
+        }
+
+        .southwest-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .southwest-text h3 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: var(--accent-gold);
+        }
+
+        .southwest-text p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .advantage-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .advantage-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-light);
+        }
+
+        .advantage-list li:last-child {
+            border-bottom: none;
+        }
+
+        .advantage-icon {
+            color: var(--accent-gold);
+            flex-shrink: 0;
+        }
+
+        .market-map {
+            position: relative;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .map-graphic {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .map-point {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .map-point::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.3;
+            animation: pulse 2s infinite;
+        }
+
+        .map-point:hover {
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+
+        .map-label {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            white-space: nowrap;
+            color: var(--text-light);
+        }
+
+        /* Target Markets Section */
+        .markets-section {
+            background: var(--primary-dark);
+        }
+
+        .markets-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .market-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .market-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-blue));
+            transform: translateX(-100%);
+            transition: transform 0.3s;
+        }
+
+        .market-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .market-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .market-name {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .market-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Growth Strategy Section */
+        .strategy-section {
+            background: #0a0a0a;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .timeline-content h4 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .timeline-content p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .timeline-date {
+            flex: 1;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 200;
+            color: var(--accent-gold);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+
+        /* Customer Segments Section */
+        .segments-section {
+            background: var(--primary-dark);
+        }
+
+        .segments-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .segment-card {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .segment-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--accent-gold);
+            border-radius: 50%;
+        }
+
+        .segment-title {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .segment-list {
+            list-style: none;
+            color: var(--text-light);
+        }
+
+        .segment-list li {
+            padding: 0.5rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 4rem 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0.1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.3;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: 0.1em;
+            }
+
+            .southwest-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .markets-grid,
+            .segments-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .timeline-dot {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="TPDC-Style4-Home.html" class="logo">
+            <img src="truepath-logo-white.png" alt="TruePath Data Centers" style="height: 40px; width: auto;">
+        </a>
+        <ul class="nav-menu">
+            <li><a href="TPDC-Style4-Home.html">Home</a></li>
+            <li><a href="TPDC-Style4-About.html">About</a></li>
+            <li><a href="TPDC-Style4-Services.html">Services</a></li>
+            <li><a href="TPDC-Style4-Team.html">Team</a></li>
+            <li><a href="TPDC-Style4-Markets.html" class="active">Markets</a></li>
+            <li><a href="TPDC-Style4-Careers.html">Careers</a></li>
+            <li><a href="TPDC-Style4-Contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="page-hero-content">
+            <h1>Our Markets</h1>
+            <p class="page-hero-subtitle">Strategic Positioning in High-Growth Southwest Markets</p>
+        </div>
+    </section>
+
+    <!-- Southwest Advantage Section -->
+    <section class="southwest-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Regional Focus</p>
+                <h2 class="section-title">The Southwest Advantage</h2>
+            </div>
+            <div class="southwest-content">
+                <div class="southwest-text">
+                    <h3>Strategic Geographic Positioning</h3>
+                    <p>
+                        While traditional data center markets face constraints of land availability, 
+                        power costs, and regulatory complexity, the Southwest presents a compelling 
+                        alternative for next-generation data center development.
+                    </p>
+                    <p>
+                        Our strategic focus on the Southwest United States leverages unique regional 
+                        advantages that enable us to deliver superior returns while meeting the 
+                        explosive demand for data center capacity.
+                    </p>
+                    <ul class="advantage-list">
+                        <li>
+                            <span class="advantage-icon">✓</span>
+                            Power costs 30-40% below coastal markets
+                        </li>
+                        <li>
+                            <span class="advantage-icon">✓</span>
+                            Land costs 50-70% below traditional hubs
+                        </li>
+                        <li>
+                            <span class="advantage-icon">✓</span>
+                            Non-humid climate ideal for cooling efficiency
+                        </li>
+                        <li>
+                            <span class="advantage-icon">✓</span>
+                            Expanding fiber connectivity to major markets
+                        </li>
+                        <li>
+                            <span class="advantage-icon">✓</span>
+                            Tax incentives and opportunity zone benefits
+                        </li>
+                    </ul>
+                </div>
+                <div class="market-map">
+                    <div class="map-graphic">
+                        <div class="map-point" style="top: 40%; left: 30%;">
+                            <span class="map-label">Albuquerque</span>
+                        </div>
+                        <div class="map-point" style="top: 55%; left: 20%;">
+                            <span class="map-label">Phoenix</span>
+                        </div>
+                        <div class="map-point" style="top: 25%; left: 50%;">
+                            <span class="map-label">Denver</span>
+                        </div>
+                        <div class="map-point" style="top: 60%; left: 60%;">
+                            <span class="map-label">Dallas</span>
+                        </div>
+                        <div class="map-point" style="top: 70%; left: 65%;">
+                            <span class="map-label">Austin</span>
+                        </div>
+                        <div class="map-point" style="top: 30%; left: 35%;">
+                            <span class="map-label">Salt Lake City</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Markets Section -->
+    <section class="markets-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Expansion Strategy</p>
+                <h2 class="section-title">Target Markets</h2>
+            </div>
+            <div class="markets-grid">
+                <div class="market-card">
+                    <h3 class="market-name">New Mexico</h3>
+                    <p class="market-description">
+                        Our headquarters and flagship market, offering Industrial Revenue Bond tax advantages, 
+                        opportunity zones, and an established data center ecosystem.
+                    </p>
+                </div>
+                <div class="market-card">
+                    <h3 class="market-name">Arizona</h3>
+                    <p class="market-description">
+                        Phoenix represents an established data center market with robust infrastructure, 
+                        competitive power costs, and direct connectivity to California.
+                    </p>
+                </div>
+                <div class="market-card">
+                    <h3 class="market-name">Colorado</h3>
+                    <p class="market-description">
+                        Denver's growing tech hub status, favorable power costs, and strategic location 
+                        make it ideal for edge computing and enterprise deployments.
+                    </p>
+                </div>
+                <div class="market-card">
+                    <h3 class="market-name">Texas</h3>
+                    <p class="market-description">
+                        Dallas and Austin offer massive market opportunity with flexible energy options, 
+                        business-friendly environment, and growing technology sectors.
+                    </p>
+                </div>
+                <div class="market-card">
+                    <h3 class="market-name">Utah</h3>
+                    <p class="market-description">
+                        Salt Lake City emerges as a data center destination with competitive advantages 
+                        in power, climate, and connectivity to West Coast markets.
+                    </p>
+                </div>
+                <div class="market-card">
+                    <h3 class="market-name">Edge Markets</h3>
+                    <p class="market-description">
+                        Strategic positioning in smaller Southwest cities for edge computing deployments 
+                        serving local enterprise and 5G infrastructure needs.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Growth Strategy Section -->
+    <section class="strategy-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Strategic Roadmap</p>
+                <h2 class="section-title">Phased Growth Strategy</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-dot"></div>
+                        <h3>Phase 1</h3>
+                        <h4>Proof of Concept</h4>
+                        <p>
+                            Secure strategic land positions in New Mexico, obtain power purchase agreements, 
+                            complete design and permitting, and commence construction following market demand.
+                        </p>
+                    </div>
+                    <div class="timeline-date">2024-2029</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-dot"></div>
+                        <h3>Phase 2</h3>
+                        <h4>Regional Expansion</h4>
+                        <p>
+                            Geographic diversification across target markets, maintaining 2-3 projects in 
+                            active development, building local relationships and expertise in each market.
+                        </p>
+                    </div>
+                    <div class="timeline-date">2029-2034</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-dot"></div>
+                        <h3>Phase 3</h3>
+                        <h4>Strategic Partnerships</h4>
+                        <p>
+                            Develop preferred developer relationships with hyperscalers, explore joint 
+                            ventures, establish technology leadership position, and evolve capital structure.
+                        </p>
+                    </div>
+                    <div class="timeline-date">2030+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Segments Section -->
+    <section class="segments-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Target Customers</p>
+                <h2 class="section-title">Customer Segments</h2>
+            </div>
+            <div class="segments-grid">
+                <div class="segment-card">
+                    <div class="segment-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M2 12H22" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22S19 14.25 19 9C19 5.13 15.87 2 12 2Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="segment-title">Hyperscale Operators</h3>
+                    <ul class="segment-list">
+                        <li>Amazon Web Services</li>
+                        <li>Meta Platforms</li>
+                        <li>Google Cloud</li>
+                        <li>Microsoft Azure</li>
+                        <li>Oracle Cloud</li>
+                    </ul>
+                </div>
+                <div class="segment-card">
+                    <div class="segment-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="segment-title">AI & HPC Companies</h3>
+                    <ul class="segment-list">
+                        <li>LLM Developers</li>
+                        <li>AI Training Facilities</li>
+                        <li>Research Computing</li>
+                        <li>Crypto Mining</li>
+                        <li>Scientific Computing</li>
+                    </ul>
+                </div>
+                <div class="segment-card">
+                    <div class="segment-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+                            <path d="M12 2L2 7V12C2 16.5 4.23 20.68 7.62 23.15L12 24L16.38 23.15C19.77 20.68 22 16.5 22 12V7L12 2Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="segment-title">Enterprise & Government</h3>
+                    <ul class="segment-list">
+                        <li>Fortune 500 Companies</li>
+                        <li>Federal Agencies</li>
+                        <li>DOE/DOD</li>
+                        <li>State Governments</li>
+                        <li>Healthcare Systems</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo" style="margin-bottom: 2rem; text-align: center;">
+                <img src="truepath-logo-white.png" alt="TruePath Data Centers" style="height: 50px; width: auto; opacity: 0.7;">
+            </div>
+            <div class="footer-links">
+                <a href="TPDC-Style4-About.html">About</a>
+                <a href="TPDC-Style4-Services.html">Services</a>
+                <a href="TPDC-Style4-Team.html">Team</a>
+                <a href="TPDC-Style4-Careers.html">Careers</a>
+                <a href="TPDC-Style4-Contact.html">Contact</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TruePath Data Centers. All rights reserved. | Albuquerque, New Mexico</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

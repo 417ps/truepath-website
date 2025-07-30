@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opportunity | TruePath Data Centers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #e5e5e5;
+            color: #000;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(229, 229, 229, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #000;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            opacity: 1;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 10rem 3rem 6rem;
+            text-align: center;
+            background: #fff;
+        }
+
+        .hero-section h1 {
+            font-size: 5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: #000;
+            color: #fff;
+            padding: 4rem 3rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-family: -apple-system, sans-serif;
+        }
+
+        /* Market Section */
+        .market-section {
+            padding: 6rem 3rem;
+            background: #fff;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .market-card {
+            padding: 3rem;
+            background: #fafafa;
+            transition: all 0.3s;
+        }
+
+        .market-card:hover {
+            background: #f0f0f0;
+            transform: translateY(-5px);
+        }
+
+        .market-card h3 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+
+        .market-card ul {
+            list-style: none;
+        }
+
+        .market-card li {
+            padding: 0.5rem 0;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Advantages Section */
+        .advantages-section {
+            background: #e5e5e5;
+            padding: 6rem 3rem;
+        }
+
+        .advantages-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .advantage-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            align-items: center;
+        }
+
+        .advantage-number {
+            font-size: 4rem;
+            font-weight: 300;
+            opacity: 0.2;
+            text-align: center;
+        }
+
+        .advantage-text h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .advantage-text p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Investment Section */
+        .investment-section {
+            background: #fff;
+            padding: 6rem 3rem;
+        }
+
+        .investment-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .investment-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin: 3rem 0;
+            padding: 3rem;
+            background: #fafafa;
+        }
+
+        .metric-item h4 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-item p {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-family: -apple-system, sans-serif;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: #000;
+            color: #fff;
+            padding: 6rem 3rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: transparent;
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+            font-family: -apple-system, sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .cta-button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .cta-button.primary {
+            background: #fff;
+            color: #000;
+        }
+
+        .cta-button.primary:hover {
+            background: transparent;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .market-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .investment-metrics {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-section h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">TruePath</div>
+        <ul class="nav-menu">
+            <li><a href="TPDC-Style1-Minimal-Architecture.html">Home</a></li>
+            <li><a href="TPDC-Style1-About.html">About</a></li>
+            <li><a href="TPDC-Style1-Team.html">Team</a></li>
+            <li><a href="TPDC-Style1-Opportunity.html" class="active">Opportunity</a></li>
+            <li><a href="TPDC-Style1-Contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero-section">
+        <h1>The Opportunity</h1>
+        <p class="hero-subtitle">
+            The United States must triple its data center capacity by 2030. 
+            TruePath is positioned to capture this unprecedented growth with 
+            revolutionary efficiency and superior returns.
+        </p>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>3x</h3>
+                <p>Capacity Needed by 2030</p>
+            </div>
+            <div class="stat-item">
+                <h3>8-10x</h3>
+                <p>Footprint Reduction</p>
+            </div>
+            <div class="stat-item">
+                <h3>1.02</h3>
+                <p>Industry-Leading PUE</p>
+            </div>
+            <div class="stat-item">
+                <h3>18-21%</h3>
+                <p>Target IRR</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="market-section">
+        <div class="section-header">
+            <h2>Market Dynamics</h2>
+            <p>The convergence of explosive demand and technological disruption creates an unprecedented opportunity</p>
+        </div>
+        <div class="market-grid">
+            <div class="market-card">
+                <h3>Demand Drivers</h3>
+                <ul>
+                    <li>• AI revolution requiring massive computing infrastructure</li>
+                    <li>• Corporate digital transformation accelerating</li>
+                    <li>• Edge computing for IoT and low-latency applications</li>
+                    <li>• Cloud migration continuing across all industries</li>
+                    <li>• 5G deployment driving distributed compute needs</li>
+                </ul>
+            </div>
+            <div class="market-card">
+                <h3>Supply Constraints</h3>
+                <ul>
+                    <li>• Traditional approaches cannot meet demand velocity</li>
+                    <li>• Power availability limiting new developments</li>
+                    <li>• Water scarcity constraining cooling options</li>
+                    <li>• Land costs escalating in primary markets</li>
+                    <li>• Construction timelines too lengthy for market needs</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="advantages-section">
+        <div class="section-header">
+            <h2>Southwest Advantage</h2>
+            <p>New Mexico offers unparalleled benefits for next-generation data center development</p>
+        </div>
+        <div class="advantages-content">
+            <div class="advantage-item">
+                <div class="advantage-number">01</div>
+                <div class="advantage-text">
+                    <h3>Cost Leadership</h3>
+                    <p>Power costs 30-40% below coastal markets with 20-year fixed agreements. Land costs 50-70% below traditional hubs. Construction benefits from competitive labor rates.</p>
+                </div>
+            </div>
+            <div class="advantage-item">
+                <div class="advantage-number">02</div>
+                <div class="advantage-text">
+                    <h3>Tax Advantages</h3>
+                    <p>Industrial Revenue Bond (IRB) benefits, Opportunity Zone incentives, and favorable state policies create superior investment returns.</p>
+                </div>
+            </div>
+            <div class="advantage-item">
+                <div class="advantage-number">03</div>
+                <div class="advantage-text">
+                    <h3>Ideal Climate</h3>
+                    <p>Non-humid environment optimizes immersion cooling performance. Minimal natural disaster risk. Year-round construction capability.</p>
+                </div>
+            </div>
+            <div class="advantage-item">
+                <div class="advantage-number">04</div>
+                <div class="advantage-text">
+                    <h3>Strategic Location</h3>
+                    <p>Expanding fiber connectivity to major markets. Direct routes to Phoenix, Denver, Dallas, and California. Growing tech ecosystem.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="investment-section">
+        <div class="section-header">
+            <h2>Investment Opportunity</h2>
+            <p>Superior returns through operational excellence and financial innovation</p>
+        </div>
+        <div class="investment-content">
+            <div class="investment-metrics">
+                <div class="metric-item">
+                    <h4>200MW</h4>
+                    <p>Initial Phase</p>
+                </div>
+                <div class="metric-item">
+                    <h4>1.2GW</h4>
+                    <p>Full Campus</p>
+                </div>
+                <div class="metric-item">
+                    <h4>$2.1B</h4>
+                    <p>Total Investment</p>
+                </div>
+            </div>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #666; margin-top: 2rem;">
+                Our phased development approach enables rapid deployment while maintaining 
+                capital discipline. Each phase is fully pre-leased before construction, 
+                ensuring stable cash flows and minimizing development risk.
+            </p>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Join the Revolution</h2>
+        <p>Partner with TruePath to build the critical infrastructure powering tomorrow's digital economy</p>
+        <div class="cta-buttons">
+            <a href="TPDC-Style1-Contact.html" class="cta-button primary">Request Information</a>
+            <a href="TPDC-Style1-Team.html" class="cta-button">Meet Our Team</a>
+        </div>
+    </section>
+</body>
+</html>

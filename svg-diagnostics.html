@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Diagnostics - Browser Rendering Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .dark-section {
+            background: #1a1a1a;
+            color: white;
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-left: 4px solid #007acc;
+            background: #f0f8ff;
+        }
+        .error {
+            border-left-color: #dc3545;
+            background: #fff5f5;
+        }
+        .success {
+            border-left-color: #28a745;
+            background: #f0fff4;
+        }
+        .code-block {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .browser-info {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        img {
+            border: 2px solid #ddd;
+            margin: 10px 5px;
+        }
+        .inline-svg {
+            border: 2px solid #ddd;
+            margin: 10px 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 SVG Logo Diagnostics</h1>
+    
+    <div class="browser-info">
+        <h3>Browser Information</h3>
+        <div id="browser-info"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 1: Direct SVG File References</h2>
+        <p><strong>Testing:</strong> ../assets/logos/truepath-logo-horizontal.svg</p>
+        <img src="../assets/logos/truepath-logo-horizontal.svg" alt="TruePath SVG" style="height: 60px;">
+        <div class="test-result" id="test1-result">Checking...</div>
+    </div>
+
+    <div class="test-section dark-section">
+        <h2>Test 2: SVG on Dark Background</h2>
+        <p><strong>Testing:</strong> White SVG visibility</p>
+        <img src="../assets/logos/logo-horizontal-white.svg" alt="White SVG" style="height: 60px;">
+        <div class="test-result" id="test2-result">Checking...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 3: Inline SVG</h2>
+        <p><strong>Testing:</strong> SVG code directly embedded</p>
+        <div class="inline-svg">
+            <svg width="200" height="50" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="25" cy="25" r="15" stroke="#007acc" stroke-width="2" fill="none"/>
+                <circle cx="25" cy="25" r="5" fill="#007acc"/>
+                <text x="50" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#007acc">TRUEPATH</text>
+                <text x="50" y="35" font-family="Arial, sans-serif" font-size="10" fill="#666">DATA CENTERS</text>
+            </svg>
+        </div>
+        <div class="test-result success">Inline SVG should always work</div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 4: PNG Fallback</h2>
+        <p><strong>Testing:</strong> PNG image as fallback</p>
+        <img src="../assets/logos/logo-horizontal-white.png" alt="PNG Logo" style="height: 60px; background: #333;">
+        <div class="test-result" id="test4-result">Checking...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 5: Network Protocol Detection</h2>
+        <div class="code-block" id="protocol-info"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 6: SVG Content Analysis</h2>
+        <div id="svg-content-analysis"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 7: MIME Type Test</h2>
+        <div id="mime-test-result"></div>
+    </div>
+
+    <script>
+        // Browser Detection
+        function getBrowserInfo() {
+            const userAgent = navigator.userAgent;
+            let browserName = "Unknown";
+            let browserVersion = "Unknown";
+            
+            if (userAgent.indexOf("Firefox") > -1) {
+                browserName = "Firefox";
+                browserVersion = userAgent.match(/Firefox\/([0-9\.]+)/)[1];
+            } else if (userAgent.indexOf("Chrome") > -1) {
+                browserName = "Chrome";
+                browserVersion = userAgent.match(/Chrome\/([0-9\.]+)/)[1];
+            } else if (userAgent.indexOf("Safari") > -1) {
+                browserName = "Safari";
+                browserVersion = userAgent.match(/Version\/([0-9\.]+)/)[1];
+            } else if (userAgent.indexOf("Edge") > -1) {
+                browserName = "Edge";
+                browserVersion = userAgent.match(/Edge\/([0-9\.]+)/)[1];
+            }
+            
+            return {
+                name: browserName,
+                version: browserVersion,
+                userAgent: userAgent,
+                platform: navigator.platform,
+                protocol: window.location.protocol
+            };
+        }
+
+        // Display browser info
+        const browserInfo = getBrowserInfo();
+        document.getElementById('browser-info').innerHTML = `
+            <strong>Browser:</strong> ${browserInfo.name} ${browserInfo.version}<br>
+            <strong>Platform:</strong> ${browserInfo.platform}<br>
+            <strong>Protocol:</strong> ${browserInfo.protocol}<br>
+            <strong>User Agent:</strong> ${browserInfo.userAgent}
+        `;
+
+        // Protocol information
+        document.getElementById('protocol-info').innerHTML = `
+Protocol: ${window.location.protocol}
+Host: ${window.location.host}
+Pathname: ${window.location.pathname}
+Origin: ${window.location.origin}
+
+File protocol restrictions:
+- CORS may block external resources
+- SVG files may not load from parent directories
+- Local file serving has limited MIME type support
+        `;
+
+        // Test SVG loading
+        function testSVGLoading() {
+            const img1 = new Image();
+            img1.onload = function() {
+                document.getElementById('test1-result').innerHTML = '✅ SVG loaded successfully';
+                document.getElementById('test1-result').className = 'test-result success';
+            };
+            img1.onerror = function() {
+                document.getElementById('test1-result').innerHTML = '❌ SVG failed to load - Check file path and CORS policy';
+                document.getElementById('test1-result').className = 'test-result error';
+            };
+            img1.src = '../assets/logos/truepath-logo-horizontal.svg';
+
+            const img2 = new Image();
+            img2.onload = function() {
+                document.getElementById('test2-result').innerHTML = '✅ White SVG loaded successfully';
+                document.getElementById('test2-result').className = 'test-result success';
+            };
+            img2.onerror = function() {
+                document.getElementById('test2-result').innerHTML = '❌ White SVG failed to load';
+                document.getElementById('test2-result').className = 'test-result error';
+            };
+            img2.src = '../assets/logos/logo-horizontal-white.svg';
+
+            const img3 = new Image();
+            img3.onload = function() {
+                document.getElementById('test4-result').innerHTML = '✅ PNG fallback loaded successfully';
+                document.getElementById('test4-result').className = 'test-result success';
+            };
+            img3.onerror = function() {
+                document.getElementById('test4-result').innerHTML = '❌ PNG fallback failed to load';
+                document.getElementById('test4-result').className = 'test-result error';
+            };
+            img3.src = '../assets/logos/logo-horizontal-white.png';
+        }
+
+        // Analyze SVG content
+        function analyzeSVGContent() {
+            fetch('../assets/logos/truepath-logo-horizontal.svg')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                    return response.text();
+                })
+                .then(svgContent => {
+                    document.getElementById('svg-content-analysis').innerHTML = `
+                        <div class="test-result success">✅ SVG file accessible via fetch</div>
+                        <div class="code-block">${svgContent.substring(0, 500)}${svgContent.length > 500 ? '...' : ''}</div>
+                    `;
+                })
+                .catch(error => {
+                    document.getElementById('svg-content-analysis').innerHTML = `
+                        <div class="test-result error">❌ SVG fetch failed: ${error.message}</div>
+                        <p>This could indicate:</p>
+                        <ul>
+                            <li>CORS restrictions for file:// protocol</li>
+                            <li>Incorrect file path</li>
+                            <li>File permission issues</li>
+                        </ul>
+                    `;
+                });
+        }
+
+        // MIME type test
+        function testMIMEType() {
+            fetch('../assets/logos/truepath-logo-horizontal.svg')
+                .then(response => {
+                    const contentType = response.headers.get('content-type');
+                    document.getElementById('mime-test-result').innerHTML = `
+                        <div class="test-result ${contentType && contentType.includes('svg') ? 'success' : 'error'}">
+                            Content-Type: ${contentType || 'Unknown'}
+                        </div>
+                        <p>Expected: image/svg+xml or text/xml</p>
+                        <p>File protocol may not set proper MIME types</p>
+                    `;
+                })
+                .catch(error => {
+                    document.getElementById('mime-test-result').innerHTML = `
+                        <div class="test-result error">❌ Could not determine MIME type: ${error.message}</div>
+                    `;
+                });
+        }
+
+        // Run tests
+        setTimeout(() => {
+            testSVGLoading();
+            analyzeSVGContent();
+            testMIMEType();
+        }, 1000);
+
+        // CSS Conflict Detection
+        function detectCSSConflicts() {
+            const images = document.querySelectorAll('img');
+            images.forEach((img, index) => {
+                const computedStyle = window.getComputedStyle(img);
+                console.log(`Image ${index + 1} computed styles:`, {
+                    display: computedStyle.display,
+                    visibility: computedStyle.visibility,
+                    opacity: computedStyle.opacity,
+                    width: computedStyle.width,
+                    height: computedStyle.height,
+                    maxWidth: computedStyle.maxWidth,
+                    maxHeight: computedStyle.maxHeight
+                });
+            });
+        }
+
+        // Run CSS conflict detection
+        setTimeout(detectCSSConflicts, 2000);
+    </script>
+</body>
+</html>

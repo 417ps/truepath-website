@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Dynamics Options - TruePath Test</title>
+    <style>
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #141414;
+            --accent-gold: #5DADE2;
+            --accent-blue: #3498DB;
+            --text-primary: #ffffff;
+            --text-secondary: #c9c9c9;
+            --text-muted: #888888;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --accent-red: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica Neue', sans-serif;
+            background: var(--primary-dark);
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(93, 173, 226, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(52, 152, 219, 0.05) 0%, transparent 50%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .option-section {
+            margin-bottom: 8rem;
+            padding: 4rem 0;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .option-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .option-header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .option-header h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .option-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Option A - Crisis Cards */
+        .crisis-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .crisis-card {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.02) 0%, 
+                rgba(255, 255, 255, 0.01) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .crisis-card:hover {
+            border-color: var(--accent-red);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(231, 76, 60, 0.1);
+        }
+
+        .crisis-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-red);
+            font-weight: 500;
+        }
+
+        .crisis-card blockquote {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            border-left: 3px solid var(--accent-gold);
+            padding-left: 1.5rem;
+        }
+
+        .crisis-card .source {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .crisis-card .source a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        .crisis-card .source a:hover {
+            text-decoration: underline;
+        }
+
+        /* Option B - Single Statement */
+        .single-statement {
+            background: var(--secondary-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .single-statement::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(93, 173, 226, 0.1) 50%, 
+                transparent 70%);
+            pointer-events: none;
+        }
+
+        .single-statement .main-quote {
+            font-size: 2.5rem;
+            font-weight: 300;
+            line-height: 1.4;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .single-statement .highlight {
+            color: var(--accent-gold);
+            font-weight: 400;
+        }
+
+        .single-statement .context {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .single-statement .source {
+            margin-top: 2rem;
+            font-size: 1rem;
+            color: var(--text-muted);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Option C - Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-gold), var(--accent-red));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 2rem;
+            width: 1rem;
+            height: 1rem;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            border: 3px solid var(--primary-dark);
+        }
+
+        .timeline-year {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-source {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Option D - Executive Brief */
+        .executive-brief {
+            background: var(--secondary-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 3rem;
+        }
+
+        .brief-item {
+            display: flex;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brief-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .brief-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            min-width: 120px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .brief-content {
+            flex: 1;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .brief-source {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* Option E - Minimal Facts */
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .fact-card {
+            text-align: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .fact-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
+        }
+
+        .fact-number {
+            font-size: 4rem;
+            font-weight: 300;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .fact-description {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .fact-source {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 1024px) {
+            .crisis-grid, .facts-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .single-statement .main-quote {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Option A -->
+        <div class="option-section">
+            <div class="option-header">
+                <h1>Option A: Historic Infrastructure Build-Out</h1>
+                <h2>The Largest Infrastructure Project in Modern History</h2>
+                <p>"The race to scale data centers represents the largest infrastructure build-out in modern history"</p>
+            </div>
+            
+            <div class="crisis-grid">
+                <div class="crisis-card">
+                    <h3>Record Construction Scale</h3>
+                    <blockquote>
+                        "Data center supply surged 34% in 2024 to 6,922 MW, with 6,350 MW under construction. It was almost impossible to keep up with the seemingly endless stream of new developments."
+                    </blockquote>
+                    <div class="source">
+                        — <a href="https://www.utilitydive.com/news/data-center-supply-construction-surg-2024-ai-boom-cbre-vertiv-Tecogen/741910/">Utility Dive</a> / <a href="https://www.datacenterknowledge.com/data-center-construction/2024-s-biggest-data-center-construction-stories-a-year-in-review">Data Center Knowledge</a>
+                    </div>
+                </div>
+                
+                <div class="crisis-card">
+                    <h3>Unprecedented Investment Requirements</h3>
+                    <blockquote>
+                        "Meeting projected demand requires $500 billion in new infrastructure. Scaling at this pace will require more than a trillion dollars in investment across the ecosystem."
+                    </blockquote>
+                    <div class="source">
+                        — <a href="https://www.mckinsey.com/industries/private-capital/our-insights/how-data-centers-and-the-energy-sector-can-sate-ais-hunger-for-power">McKinsey Global Institute</a> / <a href="https://www.prnewswire.com/news-releases/deloitte-ai-data-center-power-demand-could-surge-30x-by-2035-amid-power-and-grid-capacity-constraints-302488877.html">Deloitte Analysis</a>
+                    </div>
+                </div>
+                
+                <div class="crisis-card">
+                    <h3>AI-Driven Transformation</h3>
+                    <blockquote>
+                        "AI requires compute power in such volume that it's unlike anything we have ever witnessed. We continue to see accelerated scaling across the market with strong long-term growth signals."
+                    </blockquote>
+                    <div class="source">
+                        — <a href="https://www.cnbc.com/2025/04/27/ai-data-center-boom-isnt-going-bust-but-the-pause-is-trending.html">POET Technologies CEO</a> / <a href="https://www.datacenterfrontier.com/cloud/article/55253151/8-trends-that-will-shape-the-data-center-industry-in-2025">Vertiv CEO</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Option B -->
+        <div class="option-section">
+            <div class="option-header">
+                <h1>Option B: Single Powerful Statement</h1>
+            </div>
+            
+            <div class="single-statement">
+                <div class="main-quote">
+                    "Expected capital expenditure for AI infrastructure will reach <span class="highlight">$5.2 trillion</span>. The race to scale data centers represents the <span class="highlight">largest infrastructure build-out in modern history</span>."
+                </div>
+                
+                <div class="context">
+                    With 97% spending growth in 2024 alone and only 2.8% vacancy rates remaining, TruePath is positioned at the epicenter of this transformation.
+                </div>
+                
+                <div class="source">
+                    — <a href="https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-cost-of-compute-a-7-trillion-dollar-race-to-scale-data-centers">McKinsey: The Cost of Compute</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Option C -->
+        <div class="option-section">
+            <div class="option-header">
+                <h1>Option C: Urgency Timeline</h1>
+                <h2>The Countdown</h2>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-content">97% spending increase, 2.8% vacancy rates</div>
+                    <div class="timeline-source">
+                        <a href="https://www.datacenterknowledge.com/management/data-center-trends-and-predictions-for-2024-from-industry-insiders">IDC</a> / <a href="https://www.cbre.com/insights/reports/global-data-center-trends-2024">CBRE</a>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2027</div>
+                    <div class="timeline-content">40% of AI data centers power-constrained</div>
+                    <div class="timeline-source">
+                        <a href="https://www.gartner.com/en/newsroom/press-releases/2024-11-12-gartner-predicts-power-shortages-will-restrict-40-percent-of-ai-data-centers-by-20270">Gartner</a>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2030</div>
+                    <div class="timeline-content">15 GW supply deficit even with perfect execution</div>
+                    <div class="timeline-source">
+                        <a href="https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/ai-power-expanding-data-center-capacity-to-meet-growing-demand">McKinsey</a>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Reality</div>
+                    <div class="timeline-content">"Unlimited demand growing astronomically"</div>
+                    <div class="timeline-source">
+                        <a href="https://www.cnbc.com/2025/04/27/ai-data-center-boom-isnt-going-bust-but-the-pause-is-trending.html">Oracle CEO</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Option D -->
+        <div class="option-section">
+            <div class="option-header">
+                <h1>Option D: Executive Brief Format</h1>
+                <h2>Market Intelligence Brief</h2>
+            </div>
+            
+            <div class="executive-brief">
+                <div class="brief-item">
+                    <div class="brief-label">Situation:</div>
+                    <div class="brief-content">
+                        Physical shortage meets exponential demand
+                    </div>
+                </div>
+                
+                <div class="brief-item">
+                    <div class="brief-label">Scale:</div>
+                    <div class="brief-content">
+                        $5.2T represents largest infrastructure build in history
+                        <div class="brief-source">
+                            <a href="https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-cost-of-compute-a-7-trillion-dollar-race-to-scale-data-centers">McKinsey</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="brief-item">
+                    <div class="brief-label">Urgency:</div>
+                    <div class="brief-content">
+                        97% growth rate with 2.8% vacancy remaining
+                        <div class="brief-source">
+                            <a href="https://www.datacenterknowledge.com/management/data-center-trends-and-predictions-for-2024-from-industry-insiders">IDC</a> / <a href="https://www.cbre.com/insights/reports/global-data-center-trends-2024">CBRE</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="brief-item">
+                    <div class="brief-label">Constraint:</div>
+                    <div class="brief-content">
+                        Power will limit 40% of facilities by 2027
+                        <div class="brief-source">
+                            <a href="https://www.gartner.com/en/newsroom/press-releases/2024-11-12-gartner-predicts-power-shortages-will-restrict-40-percent-of-ai-data-centers-by-20270">Gartner</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="brief-item">
+                    <div class="brief-label">Reality:</div>
+                    <div class="brief-content">
+                        "Problems are not going away"
+                        <div class="brief-source">
+                            <a href="https://www.datacenterknowledge.com/management/data-center-trends-and-predictions-for-2024-from-industry-insiders">Layer 9 Data Centers CEO</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Option E -->
+        <div class="option-section">
+            <div class="option-header">
+                <h1>Option E: Minimal Impact</h1>
+                <h2>Three Facts</h2>
+                <p>No fluff, just the hardest-hitting data points</p>
+            </div>
+            
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <div class="fact-number">2.8%</div>
+                    <div class="fact-description">Remaining data center vacancy in primary markets</div>
+                    <div class="fact-source">
+                        <a href="https://www.cbre.com/insights/reports/global-data-center-trends-2024">CBRE Global Data Center Trends 2024</a>
+                    </div>
+                </div>
+                
+                <div class="fact-card">
+                    <div class="fact-number">$5.2T</div>
+                    <div class="fact-description">Required AI infrastructure investment</div>
+                    <div class="fact-source">
+                        <a href="https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-cost-of-compute-a-7-trillion-dollar-race-to-scale-data-centers">McKinsey: The Cost of Compute</a>
+                    </div>
+                </div>
+                
+                <div class="fact-card">
+                    <div class="fact-number">40%</div>
+                    <div class="fact-description">Data centers that will be power-constrained by 2027</div>
+                    <div class="fact-source">
+                        <a href="https://www.gartner.com/en/newsroom/press-releases/2024-11-12-gartner-predicts-power-shortages-will-restrict-40-percent-of-ai-data-centers-by-20270">Gartner Press Release</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

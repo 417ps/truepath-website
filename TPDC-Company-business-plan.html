@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruePath Data Centers | Business Plan Access</title>
+    <style>
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #141414;
+            --accent-gold: #5DADE2;
+            --accent-blue: #3498DB;
+            --text-primary: #ffffff;
+            --text-secondary: #c9c9c9;
+            --text-muted: #888888;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.02);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica Neue', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--primary-dark);
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: inline-block;
+            height: 40px;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 100%;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-links a.active {
+            color: var(--accent-gold);
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 2px;
+        }
+
+        /* Main Content */
+        .nda-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 10rem 2rem 4rem;
+            min-height: 100vh;
+        }
+
+        .nda-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .nda-header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .nda-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 3rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+        }
+
+        .form-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--accent-gold);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: var(--accent-gold);
+        }
+
+        .checkbox-group label {
+            flex: 1;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            padding: 1.2rem 3rem;
+            border: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(93, 173, 226, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Info Cards */
+        .info-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .info-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Document Preview */
+        .document-preview {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 3rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+        }
+
+        .document-preview h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-gold);
+        }
+
+        .preview-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .preview-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .preview-list li:last-child {
+            border-bottom: none;
+        }
+
+        .preview-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            background: var(--primary-dark);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-right {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, 
+                rgba(93, 173, 226, 0.1) 0%, 
+                rgba(52, 152, 219, 0.05) 100%);
+            border: 1px solid var(--accent-gold);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .success-message h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nda-container {
+                padding: 8rem 1rem 3rem;
+            }
+
+            .form-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .info-section {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .footer-left {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="TPDC-Company-index.html" class="logo">
+                <img src="logo.png" alt="TruePath Data Centers" style="height: 35px;">
+            </a>
+            <ul class="nav-links">
+                <li><a href="TPDC-Company-index.html">Home</a></li>
+                <li><a href="TPDC-Company-about.html">About</a></li>
+                <li><a href="TPDC-Company-team.html">Team</a></li>
+                <li><a href="TPDC-Company-business-plan.html" class="active">Business Plan</a></li>
+                <li><a href="TPDC-Company-careers.html">Careers</a></li>
+                <li><a href="TPDC-Company-opportunity.html">Opportunity</a></li>
+                <li><a href="TPDC-Company-contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="nda-container">
+        <div class="nda-header">
+            <h1>Access Comprehensive Business Plan</h1>
+            <p>Complete the form below to receive our detailed business plan, financial projections, and technical specifications</p>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <h3>Thank You!</h3>
+            <p>Your request has been submitted. Our team will review your information and send the business plan to your email within 24 hours.</p>
+        </div>
+
+        <!-- Document Preview -->
+        <div class="document-preview">
+            <h2>Business Plan Contents</h2>
+            <ul class="preview-list">
+                <li>Introduction and Company Overview</li>
+                <li>The Problem We Solve - Market Analysis</li>
+                <li>How We Were Formed - Company Genesis</li>
+                <li>Leadership Team Profiles</li>
+                <li>Core Values and Operating Philosophy</li>
+                <li>Business and Revenue Model</li>
+                <li>Growth Strategy and Expansion Plans</li>
+                <li>Market Opportunity and Competitive Edge</li>
+                <li>SWOT Analysis</li>
+                <li>Financial Overview and Projections</li>
+                <li>Next Steps and Partnership Opportunities</li>
+            </ul>
+        </div>
+
+        <!-- Info Cards -->
+        <div class="info-section">
+            <div class="info-card">
+                <h3>Qualified Investors</h3>
+                <p>This business plan contains confidential information intended for institutional investors, family offices, and accredited investors only.</p>
+            </div>
+            <div class="info-card">
+                <h3>Immediate Access</h3>
+                <p>Upon verification, you will receive the complete business plan package including financial models and technical specifications.</p>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-section">
+            <h2>Request Access</h2>
+            <form id="ndaForm">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Business Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company/Organization</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="investorType">Investor Type</label>
+                    <select id="investorType" name="investorType" required>
+                        <option value="">Select Type</option>
+                        <option value="institutional">Institutional Investor</option>
+                        <option value="family-office">Family Office</option>
+                        <option value="accredited">Accredited Individual</option>
+                        <option value="strategic">Strategic Partner</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="investmentRange">Investment Range</label>
+                    <select id="investmentRange" name="investmentRange" required>
+                        <option value="">Select Range</option>
+                        <option value="under-5m">Under $5M</option>
+                        <option value="5-10m">$5M - $10M</option>
+                        <option value="10-25m">$10M - $25M</option>
+                        <option value="25-50m">$25M - $50M</option>
+                        <option value="over-50m">Over $50M</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Additional Information (Optional)</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your investment interests or any specific questions"></textarea>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="nda" name="nda" required>
+                    <label for="nda">I acknowledge that the information I will receive is confidential and proprietary to TruePath Data Centers LLC. I agree to maintain confidentiality and not disclose any information without written consent.</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="qualified" name="qualified" required>
+                    <label for="qualified">I confirm that I am a qualified investor as defined by applicable securities laws and regulations.</label>
+                </div>
+
+                <button type="submit" class="submit-btn">Request Business Plan</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="TPDC-Company-index.html" class="logo">
+                    <img src="logo.png" alt="TruePath Data Centers" style="height: 30px;">
+                </a>
+                <ul class="footer-links">
+                    <li><a href="TPDC-Company-terms.html">Terms</a></li>
+                    <li><a href="TPDC-Company-privacy.html">Privacy</a></li>
+                    <li><a href="TPDC-Company-compliance.html">Compliance</a></li>
+                    <li><a href="TPDC-Company-sec-filings.html">SEC Filings</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                © 2024 TruePath Data Centers LLC. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission handler
+        document.getElementById('ndaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Reset form
+            this.reset();
+            
+            // Hide form section
+            this.parentElement.style.display = 'none';
+            
+            console.log('Business plan request:', data);
+        });
+    </script>
+</body>
+</html>

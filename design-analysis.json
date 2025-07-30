@@ -1,0 +1,203 @@
+{
+  "design_analysis": {
+    "style_1_sparkling_minds": {
+      "name": "Minimal Architecture - Sparkling Minds",
+      "color_scheme": {
+        "background": "#e5e5e5 (light gray)",
+        "text_primary": "#000000 (black)",
+        "text_secondary": "#666666 (gray)",
+        "accent": "#ff0000 (red - minimal use)"
+      },
+      "typography": {
+        "hero_font": "Sans-serif, very light weight",
+        "hero_size": "Massive - 80-100px",
+        "body_font": "Clean sans-serif",
+        "body_size": "14-16px"
+      },
+      "layout": {
+        "hero": "Full-screen architectural image with overlay text",
+        "navigation": "Minimal top nav with right-aligned menu",
+        "sections": "Card-based grid layout for services",
+        "spacing": "Generous white space"
+      },
+      "key_features": [
+        "Dramatic hero image taking 100vh",
+        "Stacked text layout for impact",
+        "Icon-based service cards",
+        "Portfolio grid with hover effects",
+        "Minimal color usage"
+      ]
+    },
+    "style_2_new_house": {
+      "name": "Simple Construction - New House",
+      "color_scheme": {
+        "background": "#8a8a8a (medium gray)",
+        "text_primary": "#ffffff (white)",
+        "accent": "#ff6b35 (orange - warm accent)",
+        "borders": "Thin white lines"
+      },
+      "typography": {
+        "hero_font": "Light sans-serif",
+        "hero_size": "48-60px",
+        "body_font": "Minimal sans-serif",
+        "body_size": "14px"
+      },
+      "layout": {
+        "hero": "Full-width architectural photo",
+        "navigation": "Simple top nav with year",
+        "sections": "Vertical scroll with side borders",
+        "spacing": "Controlled with line elements"
+      },
+      "key_features": [
+        "Vertical line as design element",
+        "Minimal text overlay on images",
+        "Year prominently displayed",
+        "Single-page scroll design",
+        "Warm accent against cool grays"
+      ]
+    },
+    "style_3_modular_house": {
+      "name": "Dark Russian Construction - ModulHouse",
+      "color_scheme": {
+        "background": "#000000 (pure black)",
+        "text_primary": "#ffffff (white)",
+        "accent": "#ffffff (white buttons/borders)",
+        "overlay": "Dark gradient overlays"
+      },
+      "typography": {
+        "hero_font": "Light/regular sans-serif",
+        "hero_size": "60-80px",
+        "body_font": "Clean sans-serif",
+        "body_size": "14-16px",
+        "cyrillic": "Support for Russian text"
+      },
+      "layout": {
+        "hero": "Contained image with text overlay",
+        "navigation": "Centered logo with phone number",
+        "sections": "Icon grid with descriptions",
+        "spacing": "Tight, information-dense"
+      },
+      "key_features": [
+        "White border frame around content",
+        "Icon-based benefit grid",
+        "Hashtag navigation system",
+        "Dark dramatic imagery",
+        "Call-to-action buttons"
+      ]
+    },
+    "style_4_go_arch": {
+      "name": "Modern Architecture Portfolio - go.arch",
+      "color_scheme": {
+        "background": "#1a1a1a (near black)",
+        "text_primary": "#ffffff (white)",
+        "accent": "#d4af37 (gold)",
+        "secondary": "#666666 (gray)"
+      },
+      "typography": {
+        "hero_font": "Condensed sans-serif, uppercase",
+        "hero_size": "Large - 60px",
+        "body_font": "Regular sans-serif",
+        "body_size": "14-16px",
+        "letter_spacing": "Wide on headers"
+      },
+      "layout": {
+        "hero": "Angled architectural image with overlay",
+        "navigation": "Horizontal top nav",
+        "sections": "Project cards with hover states",
+        "numbering": "Large numbers as design elements"
+      },
+      "key_features": [
+        "Gold accent color for premium feel",
+        "Project numbering system",
+        "Angled/geometric image crops",
+        "Dark sophisticated palette",
+        "Hover animations on projects"
+      ]
+    },
+    "style_5_minimal_agency": {
+      "name": "Minimal Digital Agency",
+      "color_scheme": {
+        "background": "#f5f5f5 (light gray)",
+        "sections": "Alternating white/black sections",
+        "text": "Contrasting based on background",
+        "accent": "Minimal - mostly monochrome"
+      },
+      "typography": {
+        "hero_font": "Bold sans-serif, tracked out",
+        "hero_size": "80-100px",
+        "body_font": "Light serif for elegance",
+        "body_size": "16-18px"
+      },
+      "layout": {
+        "hero": "Contained hero with mountain image",
+        "navigation": "Centered with logo mark",
+        "sections": "Full-width alternating colors",
+        "spacing": "Generous padding"
+      },
+      "key_features": [
+        "High contrast sections",
+        "Icon-based services",
+        "Client logo showcase",
+        "Centered content blocks",
+        "Strong typographic hierarchy"
+      ]
+    },
+    "style_6_authentik": {
+      "name": "Minimal Business Platform - Authentik",
+      "color_scheme": {
+        "background": "#ffffff (pure white)",
+        "text_primary": "#000000 (black)",
+        "accent": "#000000 (black for CTAs)",
+        "secondary": "#666666 (gray)"
+      },
+      "typography": {
+        "hero_font": "Extra bold sans-serif",
+        "hero_size": "72-90px",
+        "body_font": "Regular sans-serif",
+        "body_size": "16-18px"
+      },
+      "layout": {
+        "hero": "Split layout with text/image",
+        "navigation": "Minimal top right nav",
+        "sections": "Three-column layouts",
+        "spacing": "Very generous white space"
+      },
+      "key_features": [
+        "Extreme minimalism",
+        "Black and white only",
+        "Mountain/nature imagery",
+        "Icon-based benefits",
+        "Strong CTAs"
+      ]
+    },
+    "style_7_ivory_agency": {
+      "name": "Dark Branding Agency - Ivory",
+      "color_scheme": {
+        "background": "#0a2e2e (dark teal)",
+        "text_primary": "#ffffff (white)",
+        "accent": "#00ff00 (bright green)",
+        "cards": "Darker shade overlays"
+      },
+      "typography": {
+        "hero_font": "Bold extended sans-serif",
+        "hero_size": "80-120px",
+        "body_font": "Regular sans-serif",
+        "body_size": "14-16px",
+        "style": "All caps for headers"
+      },
+      "layout": {
+        "hero": "Full-width with sparkle effect",
+        "navigation": "Horizontal with CTA button",
+        "portfolio": "Large image cards",
+        "spacing": "Tight, edge-to-edge"
+      },
+      "key_features": [
+        "Bright accent against dark",
+        "Portfolio-focused layout",
+        "Animated sparkle effects",
+        "Premium car imagery",
+        "Strong visual hierarchy"
+      ]
+    }
+  }
+}

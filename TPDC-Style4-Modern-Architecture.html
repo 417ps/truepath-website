@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruePath Data Centers | Southwest Data Center Development</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #1a1a1a;
+            --accent-gold: #d4af37;
+            --text-primary: #ffffff;
+            --text-secondary: #666666;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: var(--primary-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" style="stop-color:%23333"/><stop offset="100%" style="stop-color:%23666"/></linearGradient></defs><rect fill="url(%23g1)" width="1200" height="800"/><polygon fill="%23444" points="0,800 600,200 1200,400 1200,800"/></svg>') center/cover;
+            transform: skewY(-3deg);
+            transform-origin: top left;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 0 3rem;
+            max-width: 800px;
+        }
+
+        .project-number {
+            font-size: 5rem;
+            font-weight: 200;
+            color: var(--accent-gold);
+            margin-bottom: 2rem;
+            opacity: 0.3;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+        }
+
+        /* Side Navigation */
+        .side-nav {
+            position: fixed;
+            left: 3rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+
+        .side-nav-item {
+            display: block;
+            width: 40px;
+            height: 1px;
+            background: var(--text-secondary);
+            margin: 1rem 0;
+            transition: all 0.3s;
+        }
+
+        .side-nav-item.active {
+            width: 60px;
+            background: var(--accent-gold);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 8rem 3rem;
+            background: #000;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 2rem;
+        }
+
+        .about-content h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: var(--accent-gold);
+        }
+
+        .about-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-categories {
+            margin-top: 3rem;
+        }
+
+        .category-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            transition: color 0.3s;
+        }
+
+        .category-item:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 8rem 3rem;
+            background: var(--primary-dark);
+        }
+
+        .projects-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            background: #000;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-image {
+            height: 400px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><rect fill="%23222" width="600" height="400"/><polygon fill="%23333" points="0,400 300,100 600,400"/></svg>') center/cover;
+            transform: scale(1);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        }
+
+        .project-category {
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Navigation Arrows */
+        .nav-arrows {
+            position: absolute;
+            bottom: 3rem;
+            right: 3rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-arrow {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-arrow:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-section {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                letter-spacing: 0.1em;
+            }
+
+            .side-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">truepath.</div>
+        <ul class="nav-menu">
+            <li><a href="TPDC-Style4-Modern-Architecture.html">HOME</a></li>
+            <li><a href="TPDC-Style4-About.html">ABOUT US</a></li>
+            <li><a href="TPDC-Style4-Team.html">TEAM</a></li>
+            <li><a href="TPDC-Style4-Opportunity.html">SERVICES</a></li>
+            <li><a href="TPDC-Style4-Contact.html">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <div class="side-nav">
+        <span class="side-nav-item active"></span>
+        <span class="side-nav-item"></span>
+        <span class="side-nav-item"></span>
+        <span class="side-nav-item"></span>
+    </div>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="project-number">01</div>
+            <h1>SOUTHWEST DATA CENTER DEVELOPMENT</h1>
+            <p class="hero-subtitle">
+                TruePath brings the Southwest to the forefront of data centers. As Tier 1 markets reach saturation, we're pioneering development in emerging markets with power and fiber infrastructure.
+            </p>
+            <a href="TPDC-Style4-Contact.html" class="cta-button">EXPLORE PARTNERSHIPS →</a>
+        </div>
+        <div class="nav-arrows">
+            <div class="nav-arrow">←</div>
+            <div class="nav-arrow">→</div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div>
+            <h2 class="section-title">ABOUT TRUEPATH</h2>
+            <div class="about-categories">
+                <div class="category-item">DEVELOPMENT</div>
+                <div class="category-item">CONSULTING</div>
+                <div class="category-item">PARTNERSHIPS</div>
+            </div>
+        </div>
+        <div class="about-content">
+            <h3>pioneering the future of<br>southwest infrastructure.</h3>
+            <p>
+                TruePath is a full-fledged data center development and real estate investment company focused on the Southwest region. Our expertise spans New Mexico, Arizona, Colorado, Texas, and Utah, where we identify and develop emerging markets with essential power and fiber infrastructure.
+            </p>
+            <p>
+                Leveraging our DOE and supercomputer backgrounds, we build cutting-edge, energy-efficient data centers with smaller footprints. Our technological advancements and green building practices position us at the forefront of sustainable data center development throughout the Southwest.
+            </p>
+        </div>
+    </section>
+
+    <section class="projects-section">
+        <div class="projects-header">
+            <h2 class="section-title">OUR SERVICES</h2>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image"></div>
+                <div class="project-info">
+                    <div class="project-category">DEVELOPMENT</div>
+                    <h3 class="project-title">DATA CENTER<br>CONSTRUCTION</h3>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image"></div>
+                <div class="project-info">
+                    <div class="project-category">REAL ESTATE</div>
+                    <h3 class="project-title">STRATEGIC LAND<br>ACQUISITION</h3>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image"></div>
+                <div class="project-info">
+                    <div class="project-category">CONSULTING</div>
+                    <h3 class="project-title">TECHNOLOGY<br>ADVISORY</h3>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image"></div>
+                <div class="project-info">
+                    <div class="project-category">PARTNERSHIPS</div>
+                    <h3 class="project-title">IMMERSION COOLING<br>SOLUTIONS</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

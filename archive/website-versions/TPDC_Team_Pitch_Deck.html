@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>True Path Data Centers - Team Pitch Deck</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .slideshow-container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 90%;
+            max-width: 1200px;
+            padding: 40px;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: #fff;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #FFD700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #87CEEB;
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            color: #E0E0E0;
+            font-weight: 300;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .team-member {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .member-name {
+            font-size: 1.8em;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .member-title {
+            font-size: 1.2em;
+            color: #87CEEB;
+            margin-bottom: 15px;
+        }
+
+        .member-details {
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            margin: 10px;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            color: #FFD700;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.2em;
+            color: #E0E0E0;
+            margin-top: 5px;
+        }
+
+        .key-points {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .key-points li {
+            font-size: 1.3em;
+            margin: 15px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .key-points li:before {
+            content: "✓";
+            color: #FFD700;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .slide-counter {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(0,0,0,0.3);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.1em;
+        }
+
+        .confidential {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 0.9em;
+            color: #FFD700;
+        }
+
+        .experience-bar {
+            background: rgba(255,255,255,0.2);
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .experience-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            transition: width 2s ease;
+        }
+
+        .synergy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .synergy-item {
+            background: rgba(255,215,0,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #FFD700;
+        }
+
+        .capability-matrix {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .capability-item {
+            background: rgba(135,206,235,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 3px solid #87CEEB;
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">13</span>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <h1>True Path Data Centers</h1>
+            <p class="subtitle">The Team That Delivers</p>
+            <h3>Proven Leadership for $2.75B Data Center Development</h3>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">$5.5B</span>
+                    <span class="stat-label">Combined Experience</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Success Rate</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Key Experts</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Executive Summary -->
+        <div class="slide">
+            <h2>Executive Summary</h2>
+            <h3>$5.5B Combined Project Experience</h3>
+            <div class="key-points">
+                <ul>
+                    <li>5 key team members with complementary expertise</li>
+                    <li>100% track record of successful project delivery</li>
+                    <li>Mission-critical infrastructure specialists</li>
+                    <li>Government and private sector experience</li>
+                    <li>Proven scalability from $10M to $500M+ projects</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3: Team Overview -->
+        <div class="slide">
+            <h2>Team Overview</h2>
+            <h3>Comprehensive Data Center Expertise</h3>
+            <div class="capability-matrix">
+                <div class="capability-item">
+                    <h4 class="highlight">Project Leadership</h4>
+                    <p>Michael Sanchez<br>$300M+ projects</p>
+                </div>
+                <div class="capability-item">
+                    <h4 class="highlight">AI Infrastructure</h4>
+                    <p>Dylan James<br>Echo AI Founder</p>
+                </div>
+                <div class="capability-item">
+                    <h4 class="highlight">Construction Management</h4>
+                    <p>Mark Sanchez<br>$500M+ completed</p>
+                </div>
+                <div class="capability-item">
+                    <h4 class="highlight">Electrical Systems</h4>
+                    <p>NMDC Solutions<br>30+ years experience</p>
+                </div>
+                <div class="capability-item">
+                    <h4 class="highlight">Strategic Technology</h4>
+                    <p>Jarett Granich<br>$4B+ projects</p>
+                </div>
+                <div class="capability-item">
+                    <h4 class="highlight">Combined Strength</h4>
+                    <p>Zero major project failures<br>across entire team</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Michael Sanchez -->
+        <div class="slide">
+            <h2>Michael Sanchez</h2>
+            <h3>Founder & Project Director</h3>
+            <div class="team-member">
+                <div class="member-details">
+                    <p><span class="highlight">Experience:</span> 15+ years project management, $300M+ data center projects</p>
+                    <p><span class="highlight">Background:</span> 8+ years Los Alamos National Laboratory (100% success rate)</p>
+                    <p><span class="highlight">Clearance:</span> Q clearance capability for classified facilities</p>
+                    <p><span class="highlight">Certification:</span> Small Disadvantaged Business (10% bidding advantage)</p>
+                    <p><span class="highlight">Why Critical:</span> Mission-critical project delivery expertise with government-grade discipline</p>
+                </div>
+                <div class="experience-bar">
+                    <div class="experience-fill" style="width: 95%;"></div>
+                </div>
+                <p style="margin-top: 10px; font-size: 0.9em;">Mission-Critical Project Success Rate: 100%</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Dylan James -->
+        <div class="slide">
+            <h2>Dylan James</h2>
+            <h3>AI Infrastructure Strategist</h3>
+            <div class="team-member">
+                <div class="member-details">
+                    <p><span class="highlight">Experience:</span> Founder & CEO of Echo AI (construction document technology)</p>
+                    <p><span class="highlight">Expertise:</span> AI workload infrastructure, hyperscaler partnerships</p>
+                    <p><span class="highlight">Innovation:</span> Future-ready facility design for AI applications</p>
+                    <p><span class="highlight">Track Record:</span> Successful tech entrepreneur with deep AI knowledge</p>
+                    <p><span class="highlight">Why Critical:</span> Ensures facilities meet next-generation AI demands and hyperscaler requirements</p>
+                </div>
+                <div class="experience-bar">
+                    <div class="experience-fill" style="width: 90%;"></div>
+                </div>
+                <p style="margin-top: 10px; font-size: 0.9em;">AI Infrastructure Innovation Leadership</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Mark Sanchez -->
+        <div class="slide">
+            <h2>Mark Sanchez</h2>
+            <h3>Executive Director, Mechanical Operations</h3>
+            <div class="team-member">
+                <div class="member-details">
+                    <p><span class="highlight">Experience:</span> President of 20Twenty Construction, $500M+ projects</p>
+                    <p><span class="highlight">Certifications:</span> GB98, MM98, EE98, OSHA 500, PMP</p>
+                    <p><span class="highlight">Specialization:</span> Data center specialized general contractor</p>
+                    <p><span class="highlight">Track Record:</span> Multiple large-scale construction completions</p>
+                    <p><span class="highlight">Why Critical:</span> Mechanical systems expertise essential for data center efficiency and reliability</p>
+                </div>
+                <div class="experience-bar">
+                    <div class="experience-fill" style="width: 92%;"></div>
+                </div>
+                <p style="margin-top: 10px; font-size: 0.9em;">$500M+ Successfully Delivered Projects</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: NMDC Solutions -->
+        <div class="slide">
+            <h2>NMDC Solutions</h2>
+            <h3>Electrical Operations Partner</h3>
+            <div class="team-member">
+                <div class="member-details">
+                    <p><span class="highlight">Experience:</span> 30+ years data center electrical systems</p>
+                    <p><span class="highlight">Expertise:</span> Electrical and fiber optic design optimization</p>
+                    <p><span class="highlight">Capabilities:</span> Comprehensive facilities operations program development</p>
+                    <p><span class="highlight">Specialization:</span> Mission-critical electrical infrastructure</p>
+                    <p><span class="highlight">Why Critical:</span> Electrical systems are the backbone of data center operations - zero tolerance for failure</p>
+                </div>
+                <div class="experience-bar">
+                    <div class="experience-fill" style="width: 98%;"></div>
+                </div>
+                <p style="margin-top: 10px; font-size: 0.9em;">30+ Years Zero Major Electrical Failures</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Jarett Granich -->
+        <div class="slide">
+            <h2>Jarett Granich</h2>
+            <h3>Strategic Technology Partner</h3>
+            <div class="team-member">
+                <div class="member-details">
+                    <p><span class="highlight">Experience:</span> CEO of Granalytic Solutions, $4B+ projects completed</p>
+                    <p><span class="highlight">Expertise:</span> Advanced analytics and AI infrastructure strategy</p>
+                    <p><span class="highlight">Leadership:</span> Proven track record in large-scale project leadership</p>
+                    <p><span class="highlight">Innovation:</span> Strategic technology implementation specialist</p>
+                    <p><span class="highlight">Why Critical:</span> Strategic oversight for complex technology integration at scale</p>
+                </div>
+                <div class="experience-bar">
+                    <div class="experience-fill" style="width: 96%;"></div>
+                </div>
+                <p style="margin-top: 10px; font-size: 0.9em;">$4B+ Strategic Technology Projects</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Team Synergy -->
+        <div class="slide">
+            <h2>Team Synergy & Complementary Skills</h2>
+            <h3>Why This Team Works Together</h3>
+            <div class="synergy-grid">
+                <div class="synergy-item">
+                    <h4 class="highlight">Project Management</h4>
+                    <p>Michael's government-grade project discipline ensures mission-critical delivery standards</p>
+                </div>
+                <div class="synergy-item">
+                    <h4 class="highlight">Technology Vision</h4>
+                    <p>Dylan's AI infrastructure foresight positions facilities for future demands</p>
+                </div>
+                <div class="synergy-item">
+                    <h4 class="highlight">Construction Execution</h4>
+                    <p>Mark's mechanical systems expertise ensures efficient, reliable operations</p>
+                </div>
+                <div class="synergy-item">
+                    <h4 class="highlight">Electrical Foundation</h4>
+                    <p>NMDC's power and connectivity mastery provides rock-solid infrastructure</p>
+                </div>
+                <div class="synergy-item">
+                    <h4 class="highlight">Strategic Oversight</h4>
+                    <p>Jarett's large-scale project leadership ensures successful integration</p>
+                </div>
+                <div class="synergy-item">
+                    <h4 class="highlight">Risk Mitigation</h4>
+                    <p>Redundant expertise across all critical functions eliminates single points of failure</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Track Record -->
+        <div class="slide">
+            <h2>Track Record of Success</h2>
+            <h3>100% Project Success Rate</h3>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Michael's LANL Success Rate</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">$500M+</span>
+                    <span class="stat-label">Mark's Completed Projects</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">30+</span>
+                    <span class="stat-label">Years NMDC Experience</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">$4B+</span>
+                    <span class="stat-label">Jarett's Delivered Projects</span>
+                </div>
+            </div>
+            <div class="key-points">
+                <ul>
+                    <li>Dylan: Successful AI technology company founder</li>
+                    <li>Zero major project failures across entire team</li>
+                    <li>Proven scalability from $10M to $500M+ projects</li>
+                    <li>Mission-critical infrastructure delivery experience</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 11: Government & Private Sector -->
+        <div class="slide">
+            <h2>Government & Private Sector Experience</h2>
+            <h3>Mission-Critical Infrastructure Expertise</h3>
+            <div class="capability-matrix">
+                <div class="capability-item">
+                    <h4 class="highlight">Government Sector</h4>
+                    <p>Los Alamos National Laboratory<br>Classified facilities experience<br>Q clearance capabilities</p>
+                </div>
+                <div class="capability-item">
+                    <h4 class="highlight">Private Sector</h4>
+                    <p>Commercial data centers<br>Tech infrastructure<br>Hyperscaler partnerships</p>
+                </div>
+                <div class="capability-item">
+                    <h4 class="highlight">Regulatory Expertise</h4>
+                    <p>Compliance requirements<br>Security standards<br>Industry certifications</p>
+                </div>
+                <div class="capability-item">
+                    <h4 class="highlight">Project Scale</h4>
+                    <p>$10M to $500M+ projects<br>Proven scalability<br>Risk management</p>
+                </div>
+                <div class="capability-item">
+                    <h4 class="highlight">Technology Integration</h4>
+                    <p>AI infrastructure<br>Advanced analytics<br>Future-ready systems</p>
+                </div>
+                <div class="capability-item">
+                    <h4 class="highlight">Delivery Excellence</h4>
+                    <p>Zero major failures<br>On-time delivery<br>Budget management</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Why This Team Can Deliver -->
+        <div class="slide">
+            <h2>Why This Team Can Deliver $2.75B Project</h2>
+            <h3>Proven Scalability and Expertise</h3>
+            <div class="key-points">
+                <ul>
+                    <li><span class="highlight">Combined Experience:</span> $5.5B in successfully managed projects</li>
+                    <li><span class="highlight">Complementary Skills:</span> Each member covers critical project areas</li>
+                    <li><span class="highlight">Risk Mitigation:</span> Redundant expertise across key functions</li>
+                    <li><span class="highlight">Track Record:</span> Zero major project failures across team</li>
+                    <li><span class="highlight">Market Understanding:</span> Deep knowledge of data center requirements</li>
+                    <li><span class="highlight">Scalability:</span> Proven ability to scale from $10M to $500M+</li>
+                    <li><span class="highlight">Innovation:</span> AI-ready infrastructure expertise</li>
+                    <li><span class="highlight">Execution:</span> Government-grade project discipline</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 13: Next Steps -->
+        <div class="slide">
+            <h2>Next Steps</h2>
+            <h3>Ready to Execute</h3>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">✓</span>
+                    <span class="stat-label">Team Assembled</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">✓</span>
+                    <span class="stat-label">Project Planning</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">✓</span>
+                    <span class="stat-label">Ready for Partnership</span>
+                </div>
+            </div>
+            <div class="key-points">
+                <ul>
+                    <li>Team assembled and committed to project success</li>
+                    <li>Detailed project planning already underway</li>
+                    <li>Ready for due diligence and partnership discussions</li>
+                    <li>Immediate availability for project initiation</li>
+                    <li>Proven track record gives confidence for $2.75B delivery</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-btn" onclick="changeSlide(-1)">Previous</button>
+            <button class="nav-btn" onclick="changeSlide(1)">Next</button>
+        </div>
+
+        <div class="confidential">CONFIDENTIAL - Private Equity Presentation</div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            document.getElementById('current-slide').textContent = index + 1;
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

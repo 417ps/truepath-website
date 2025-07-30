@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruePath | Crafting Infrastructure With Purpose</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a2e2e;
+            --accent-green: #00ff88;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --card-bg: rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Sparkle Effect */
+        @keyframes sparkle {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: sparkle 2s infinite;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 46, 46, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .logo::before {
+            content: '◆';
+            color: var(--accent-green);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-green);
+        }
+
+        .nav-cta {
+            background: transparent;
+            border: 1px solid var(--text-primary);
+            color: var(--text-primary);
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+            color: var(--bg-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 span {
+            display: inline-block;
+        }
+
+        .sparkle-text {
+            position: relative;
+            display: inline-block;
+        }
+
+        .sparkle-text::after {
+            content: '✦';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-green);
+            font-size: 1.5rem;
+            animation: sparkle 2s infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--accent-green);
+            color: var(--bg-dark);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: var(--text-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: var(--accent-green);
+            animation: scroll 2s infinite;
+        }
+
+        @keyframes scroll {
+            to { transform: translateY(40px); }
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            padding: 6rem 3rem;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .portfolio-card {
+            position: relative;
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            aspect-ratio: 16/10;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500"><rect fill="%23001a1a" width="800" height="500"/><rect fill="%23003333" x="100" y="100" width="600" height="300" rx="10"/></svg>') center/cover;
+        }
+
+        .portfolio-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        }
+
+        .portfolio-category {
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .portfolio-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* Principles Section */
+        .principles-section {
+            padding: 6rem 3rem;
+            background: rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .principles-header {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .principles-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .principles-header p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .principle-card {
+            padding: 3rem 2rem;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .principle-card:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-5px);
+        }
+
+        .principle-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
+        }
+
+        .principle-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .principle-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, transparent 100%);
+        }
+
+        .cta-content h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: transparent;
+            border: 2px solid var(--accent-green);
+            color: var(--accent-green);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-green);
+            color: var(--bg-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        /* Green accent elements */
+        .green-line {
+            width: 60px;
+            height: 3px;
+            background: var(--accent-green);
+            margin: 2rem auto;
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-grid,
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">TruePath</div>
+        <ul class="nav-menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+        <a href="#" class="nav-cta">GET STARTED →</a>
+    </nav>
+
+    <section class="hero">
+        <div class="sparkle" style="top: 20%; left: 10%;"></div>
+        <div class="sparkle" style="top: 70%; right: 15%; animation-delay: 0.5s;"></div>
+        <div class="sparkle" style="top: 40%; right: 30%; animation-delay: 1s;"></div>
+        
+        <div class="hero-content">
+            <h1>
+                CRAFTING<br>
+                INFRASTRUCTURE <span class="sparkle-text">WITH</span><br>
+                PURPOSE
+            </h1>
+            <p class="hero-subtitle">
+                TruePath is a premier data center developer dedicated to crafting infrastructure that empowers businesses to stand out with creative expertise.
+            </p>
+            <a href="#" class="hero-cta">BUY TEMPLATE →</a>
+        </div>
+        
+        <div class="scroll-indicator">
+            <span>SCROLL TO EXPLORE</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <section class="portfolio-section">
+        <div class="section-header">
+            <p class="section-label">SELECTED WORKS</p>
+            <div class="green-line"></div>
+        </div>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="portfolio-image"></div>
+                <div class="portfolio-info">
+                    <p class="portfolio-category">Phase One</p>
+                    <h3 class="portfolio-title">200MW Initial Facility</h3>
+                    <p class="portfolio-subtitle">Southwest Data Center Campus</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-card">
+                <div class="portfolio-image"></div>
+                <div class="portfolio-info">
+                    <p class="portfolio-category">Expansion</p>
+                    <h3 class="portfolio-title">1.2GW Campus</h3>
+                    <p class="portfolio-subtitle">Immersion Cooling Technology</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-card">
+                <div class="portfolio-image"></div>
+                <div class="portfolio-info">
+                    <p class="portfolio-category">Innovation</p>
+                    <h3 class="portfolio-title">Edge Computing</h3>
+                    <p class="portfolio-subtitle">AI Infrastructure Design</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-card">
+                <div class="portfolio-image"></div>
+                <div class="portfolio-info">
+                    <p class="portfolio-category">Future</p>
+                    <h3 class="portfolio-title">Regional Hub</h3>
+                    <p class="portfolio-subtitle">Multi-Market Expansion</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="principles-section">
+        <div class="principles-header">
+            <p class="section-label">BENEFITS / 03</p>
+            <h2>OUR PRINCIPLES FOR<br>LASTING INFRASTRUCTURE RESONANCE</h2>
+            <div class="green-line"></div>
+        </div>
+        
+        <div class="principles-grid">
+            <div class="principle-card">
+                <div class="principle-icon">👑</div>
+                <h3>Excellence</h3>
+                <p>We pursue excellence in every aspect, ensuring unparalleled quality and innovation in our data center solutions.</p>
+            </div>
+            
+            <div class="principle-card">
+                <div class="principle-icon">🤝</div>
+                <h3>Partnership</h3>
+                <p>Through collaboration, we harness diverse perspectives to create cohesive and impactful infrastructure solutions.</p>
+            </div>
+            
+            <div class="principle-card">
+                <div class="principle-icon">🎯</div>
+                <h3>Collaboration</h3>
+                <p>Building enduring partnerships, we invest in understanding your vision, working together to achieve excellence.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>READY TO BUILD<br>SOMETHING EXTRAORDINARY?</h2>
+            <p>Let's create infrastructure that not only meets today's demands but anticipates tomorrow's possibilities.</p>
+            <a href="#" class="cta-button">START YOUR PROJECT →</a>
+        </div>
+    </section>
+
+    <script>
+        // Add random sparkles
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => sparkle.remove(), 2000);
+        }
+
+        setInterval(createSparkle, 1000);
+    </script>
+</body>
+</html>

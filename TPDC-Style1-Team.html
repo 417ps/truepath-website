@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team | TruePath Data Centers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #e5e5e5;
+            color: #000;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(229, 229, 229, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #000;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            opacity: 1;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 10rem 3rem 4rem;
+            text-align: center;
+            background: #fff;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .page-header .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Team Grid */
+        .team-section {
+            padding: 4rem 3rem;
+            background: #fff;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-member {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 3rem;
+            align-items: start;
+            padding: 3rem;
+            background: #fafafa;
+            transition: all 0.3s;
+        }
+
+        .team-member:hover {
+            background: #f0f0f0;
+            transform: translateY(-5px);
+        }
+
+        .member-photo {
+            width: 200px;
+            height: 200px;
+            background: #ddd;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-photo::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.3));
+        }
+
+        .member-info h3 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-title {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+
+        .member-company {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 1.5rem;
+            font-family: -apple-system, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .member-bio {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .member-bio ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 1rem;
+        }
+
+        .member-bio li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-bio li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: #999;
+        }
+
+        /* Leadership Quote */
+        .quote-section {
+            background: #333;
+            color: #fff;
+            padding: 6rem 3rem;
+            text-align: center;
+        }
+
+        .quote {
+            font-size: 2rem;
+            font-weight: 300;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            font-size: 1rem;
+            opacity: 0.7;
+            font-family: -apple-system, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: #e5e5e5;
+            padding: 6rem 3rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: #333;
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+            font-family: -apple-system, sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .cta-button:hover {
+            background: #000;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-member {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .member-photo {
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">TruePath</div>
+        <ul class="nav-menu">
+            <li><a href="TPDC-Style1-Minimal-Architecture.html">Home</a></li>
+            <li><a href="TPDC-Style1-About.html">About</a></li>
+            <li><a href="TPDC-Style1-Team.html" class="active">Team</a></li>
+            <li><a href="TPDC-Style1-Opportunity.html">Opportunity</a></li>
+            <li><a href="TPDC-Style1-Contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="page-header">
+        <h1>Our Team</h1>
+        <p class="subtitle">Industry veterans united by a vision to revolutionize data center development</p>
+    </section>
+
+    <section class="team-section">
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-photo"></div>
+                <div class="member-info">
+                    <h3>Michael Sanchez</h3>
+                    <p class="member-title">Founder & CEO</p>
+                    <p class="member-company">MT in NM LLC</p>
+                    <div class="member-bio">
+                        <p>Over 20 years of data center expertise combined with proven real estate investment success.</p>
+                        <ul>
+                            <li>Scaled Cross Connection from $4M to $30M annual revenue</li>
+                            <li>PMP certification with extensive data center project leadership</li>
+                            <li>Primary capital raiser and visionary for TruePath</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="member-photo"></div>
+                <div class="member-info">
+                    <h3>Mark Sanchez</h3>
+                    <p class="member-title">Chief Development Officer</p>
+                    <p class="member-company">2020 Construction</p>
+                    <div class="member-bio">
+                        <p>25+ year career encompassing complete data center lifecycle from installation to operations.</p>
+                        <ul>
+                            <li>Four years operating Los Alamos supercomputing facilities</li>
+                            <li>Expertise in mechanical cooling and HVAC systems</li>
+                            <li>Proven ability to deliver projects on time and budget</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="member-photo"></div>
+                <div class="member-info">
+                    <h3>Jarrett Granich</h3>
+                    <p class="member-title">Chief Operating Officer</p>
+                    <p class="member-company">Granalytic Solutions</p>
+                    <div class="member-bio">
+                        <p>Expert in project controls and risk management with progressive leadership experience.</p>
+                        <ul>
+                            <li>Former lead controller/scheduler for Los Alamos National Laboratory</li>
+                            <li>Infrastructure program management for City of Denver</li>
+                            <li>Specialized in risk assessment and schedule optimization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="member-photo"></div>
+                <div class="member-info">
+                    <h3>Francisco Chavez</h3>
+                    <p class="member-title">VP of Construction</p>
+                    <p class="member-company">EE-98 Electrical License</p>
+                    <div class="member-bio">
+                        <p>Critical hyperscale data center expertise from current role with Fortis Construction.</p>
+                        <ul>
+                            <li>Lead Superintendent for Meta data center builds since 2017</li>
+                            <li>Direct experience with Google and Meta standards</li>
+                            <li>Key relationships with major contractors nationwide</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="member-photo"></div>
+                <div class="member-info">
+                    <h3>Dylan James Marsh</h3>
+                    <p class="member-title">Chief Technology Officer</p>
+                    <p class="member-company">Echo AI</p>
+                    <div class="member-bio">
+                        <p>Next generation technology leadership combining mechanical engineering with cutting-edge AI.</p>
+                        <ul>
+                            <li>Deep understanding of AI infrastructure requirements</li>
+                            <li>Leading AI integration across all TruePath operations</li>
+                            <li>Bridging traditional construction with emerging technologies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="member-photo"></div>
+                <div class="member-info">
+                    <h3>Ron Velarde</h3>
+                    <p class="member-title">Senior Technical Advisor</p>
+                    <p class="member-company">NM Data Center Solutions</p>
+                    <div class="member-bio">
+                        <p>Unparalleled expertise from 35 years in data center development.</p>
+                        <ul>
+                            <li>Over $3 billion in data center project management</li>
+                            <li>Complete facility lifecycle expertise</li>
+                            <li>Tier 4 mission-critical operations experience</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quote-section">
+        <blockquote class="quote">
+            "Our team represents over 100 years of combined data center expertise, united by a shared vision to revolutionize how critical infrastructure is built, operated, and invested in."
+        </blockquote>
+        <p class="quote-author">— Michael Sanchez, Founder & CEO</p>
+    </section>
+
+    <section class="cta-section">
+        <h2>Join Our Mission</h2>
+        <a href="TPDC-Style1-Contact.html" class="cta-button">Get in Touch</a>
+    </section>
+</body>
+</html>

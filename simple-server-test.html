@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Server vs File Protocol Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #2a2a2a;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        
+        .logo-test {
+            background: #333;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .logo-test img {
+            height: 60px;
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        
+        .info-box {
+            background: #1e3a8a;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .error-box {
+            background: #7f1d1d;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .success-box {
+            background: #14532d;
+            border-left: 4px solid #22c55e;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        code {
+            background: #444;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        
+        .server-instructions {
+            background: #2d1b69;
+            border: 1px solid #5b21b6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🌐 Server vs File Protocol Logo Test</h1>
+        
+        <div class="info-box">
+            <h3>📋 Test Purpose</h3>
+            <p>This test helps determine if logo loading issues are related to the file:// protocol vs http:// protocol serving.</p>
+            <p><strong>Current Protocol:</strong> <span id="current-protocol"></span></p>
+            <p><strong>Page URL:</strong> <span id="page-url"></span></p>
+        </div>
+
+        <div class="server-instructions">
+            <h3>🚀 How to Test with Local Server</h3>
+            <p>To test with HTTP protocol instead of file://, run one of these commands in the website directory:</p>
+            <div style="background: #1a1a1a; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                <code style="display: block; margin: 5px 0;">python3 -m http.server 8000</code>
+                <code style="display: block; margin: 5px 0;">python -m SimpleHTTPServer 8000</code>
+                <code style="display: block; margin: 5px 0;">npx serve .</code>
+                <code style="display: block; margin: 5px 0;">php -S localhost:8000</code>
+            </div>
+            <p>Then open: <code>http://localhost:8000/simple-server-test.html</code></p>
+        </div>
+
+        <div class="logo-test">
+            <h3>🔍 Logo Loading Tests</h3>
+            
+            <div style="margin: 20px 0;">
+                <h4>Test 1: SVG Logo (Primary)</h4>
+                <img src="../assets/logos/truepath-logo-horizontal.svg" 
+                     alt="TruePath SVG Logo" 
+                     id="svg-logo"
+                     onload="handleLoadSuccess(this, 'svg-logo-status')"
+                     onerror="handleLoadError(this, 'svg-logo-status')">
+                <div id="svg-logo-status" class="status">Loading...</div>
+            </div>
+
+            <div style="margin: 20px 0;">
+                <h4>Test 2: PNG Logo (Fallback)</h4>
+                <img src="../assets/logos/logo-horizontal-white.png" 
+                     alt="TruePath PNG Logo"
+                     id="png-logo"
+                     onload="handleLoadSuccess(this, 'png-logo-status')"
+                     onerror="handleLoadError(this, 'png-logo-status')">
+                <div id="png-logo-status" class="status">Loading...</div>
+            </div>
+
+            <div style="margin: 20px 0;">
+                <h4>Test 3: Alternative SVG</h4>
+                <img src="../assets/logos/logo-horizontal-white.svg" 
+                     alt="TruePath Alternative SVG"
+                     id="alt-svg-logo"
+                     onload="handleLoadSuccess(this, 'alt-svg-logo-status')"
+                     onerror="handleLoadError(this, 'alt-svg-logo-status')">
+                <div id="alt-svg-logo-status" class="status">Loading...</div>
+            </div>
+        </div>
+
+        <div id="test-results">
+            <h3>📊 Test Results</h3>
+            <div id="results-content">Running tests...</div>
+        </div>
+
+        <div class="info-box">
+            <h3>🔍 What to Look For</h3>
+            <ul>
+                <li><strong>File Protocol Issues:</strong> If logos fail on file:// but work on http://, it indicates protocol restrictions</li>
+                <li><strong>Path Issues:</strong> If logos fail on both protocols, it's likely a path resolution problem</li>
+                <li><strong>MIME Type Issues:</strong> SVG files might not be served with correct content-type on file://</li>
+                <li><strong>Security Restrictions:</strong> Some browsers block file:// access to external resources</li>
+            </ul>
+        </div>
+
+        <div id="browser-info" class="info-box">
+            <h3>🌐 Browser Information</h3>
+            <div id="browser-details">Loading browser details...</div>
+        </div>
+
+        <div id="network-details" class="info-box">
+            <h3>📡 Network Request Details</h3>
+            <button onclick="runNetworkTest()" style="background: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Run Network Analysis</button>
+            <div id="network-results" style="margin-top: 15px;"></div>
+        </div>
+    </div>
+
+    <script>
+        // Track loading results
+        const testResults = {};
+        
+        // Display protocol and URL info
+        document.getElementById('current-protocol').textContent = window.location.protocol;
+        document.getElementById('page-url').textContent = window.location.href;
+
+        // Handle successful image loading
+        function handleLoadSuccess(img, statusId) {
+            const statusDiv = document.getElementById(statusId);
+            statusDiv.innerHTML = '<span style="color: #22c55e;">✅ Loaded successfully</span>';
+            statusDiv.className = 'success-box';
+            
+            const testName = img.id;
+            testResults[testName] = {
+                status: 'success',
+                src: img.src,
+                naturalWidth: img.naturalWidth,
+                naturalHeight: img.naturalHeight
+            };
+            
+            updateResults();
+        }
+
+        // Handle image loading errors
+        function handleLoadError(img, statusId) {
+            const statusDiv = document.getElementById(statusId);
+            statusDiv.innerHTML = '<span style="color: #ef4444;">❌ Failed to load</span>';
+            statusDiv.className = 'error-box';
+            
+            const testName = img.id;
+            testResults[testName] = {
+                status: 'error',
+                src: img.src,
+                error: 'Image load failed'
+            };
+            
+            updateResults();
+        }
+
+        // Update test results display
+        function updateResults() {
+            const resultsDiv = document.getElementById('results-content');
+            const protocol = window.location.protocol;
+            
+            let html = `<p><strong>Protocol:</strong> ${protocol}</p>`;
+            
+            if (protocol === 'file:') {
+                html += '<div class="error-box"><strong>⚠️ FILE PROTOCOL DETECTED</strong><br>This may cause logo loading issues due to browser security restrictions.</div>';
+            } else {
+                html += '<div class="success-box"><strong>✅ HTTP PROTOCOL</strong><br>This is optimal for web resources.</div>';
+            }
+            
+            html += '<h4>Individual Test Results:</h4>';
+            
+            for (const [testName, result] of Object.entries(testResults)) {
+                if (result.status === 'success') {
+                    html += `<div class="success-box">
+                        <strong>${testName}:</strong> ✅ Success<br>
+                        <small>Dimensions: ${result.naturalWidth}×${result.naturalHeight}</small>
+                    </div>`;
+                } else {
+                    html += `<div class="error-box">
+                        <strong>${testName}:</strong> ❌ Failed<br>
+                        <small>Source: ${result.src}</small>
+                    </div>`;
+                }
+            }
+            
+            resultsDiv.innerHTML = html;
+        }
+
+        // Browser information
+        function displayBrowserInfo() {
+            const browserDiv = document.getElementById('browser-details');
+            const userAgent = navigator.userAgent;
+            const isLocal = window.location.hostname === '' || window.location.hostname === 'localhost';
+            
+            browserDiv.innerHTML = `
+                <p><strong>User Agent:</strong> ${userAgent}</p>
+                <p><strong>Is Local:</strong> ${isLocal}</p>
+                <p><strong>Hostname:</strong> ${window.location.hostname || 'None (file://)'}</p>
+                <p><strong>Port:</strong> ${window.location.port || 'None'}</p>
+            `;
+        }
+
+        // Network test function
+        async function runNetworkTest() {
+            const resultsDiv = document.getElementById('network-results');
+            resultsDiv.innerHTML = 'Running network tests...<br>';
+            
+            const testUrls = [
+                '../assets/logos/truepath-logo-horizontal.svg',
+                '../assets/logos/logo-horizontal-white.png',
+                '../assets/logos/logo-horizontal-white.svg'
+            ];
+            
+            for (const url of testUrls) {
+                try {
+                    const startTime = performance.now();
+                    const response = await fetch(url);
+                    const endTime = performance.now();
+                    const duration = (endTime - startTime).toFixed(2);
+                    
+                    resultsDiv.innerHTML += `
+                        <div class="success-box">
+                            <strong>${url}:</strong> ✅ ${response.status} ${response.statusText}<br>
+                            <small>Time: ${duration}ms | Type: ${response.headers.get('content-type') || 'Unknown'}</small>
+                        </div>
+                    `;
+                } catch (error) {
+                    resultsDiv.innerHTML += `
+                        <div class="error-box">
+                            <strong>${url}:</strong> ❌ ${error.message}
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // Initialize
+        window.addEventListener('load', function() {
+            displayBrowserInfo();
+            
+            // Update results after a delay to catch any late-loading images
+            setTimeout(updateResults, 2000);
+        });
+
+        // Log any console errors
+        window.addEventListener('error', function(event) {
+            console.error('Page error:', event.error);
+        });
+
+        // Override console.error to capture network errors
+        const originalError = console.error;
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            // You could also display these in the UI if needed
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Opportunity | TruePath Data Centers</title>
+    <style>
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #141414;
+            --accent-gold: #5DADE2;
+            --accent-blue: #3498DB;
+            --text-primary: #ffffff;
+            --text-secondary: #c9c9c9;
+            --text-muted: #888888;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.02);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica Neue', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--primary-dark);
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: inline-block;
+            height: 40px;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 100%;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-links a.active {
+            color: var(--accent-gold);
+        }
+
+        .investor-login {
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 0.5rem 1.5rem;
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+        }
+
+        .investor-login:hover {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 10rem 2rem 4rem;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(93, 173, 226, 0.1) 50%, 
+                transparent 70%);
+            pointer-events: none;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 6rem 2rem;
+        }
+
+        .section:nth-child(even) {
+            background: var(--secondary-dark);
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Financial Projections */
+        .projections-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .projection-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 3rem;
+        }
+
+        .projection-card h3 {
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+            color: var(--accent-gold);
+        }
+
+        .projection-table {
+            width: 100%;
+        }
+
+        .projection-table tr {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .projection-table td {
+            padding: 1rem 0;
+        }
+
+        .projection-table td:last-child {
+            text-align: right;
+            font-weight: 600;
+            color: var(--accent-gold);
+        }
+
+        /* Returns Analysis */
+        .returns-visual {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .returns-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 400px;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--primary-dark);
+        }
+
+        .returns-bar {
+            width: 15%;
+            background: linear-gradient(to top, var(--accent-blue), var(--accent-gold));
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .returns-bar span {
+            position: absolute;
+            bottom: -30px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .returns-value {
+            position: absolute;
+            top: -30px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+        }
+
+        /* Market Analysis */
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .market-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .market-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
+        }
+
+        .market-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-gold);
+        }
+
+        .market-card h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .market-value {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .market-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Tax Benefits */
+        .tax-benefits {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            padding: 4rem;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tax-benefits::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .tax-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .tax-benefits h3 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .tax-list {
+            list-style: none;
+        }
+
+        .tax-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(10, 10, 10, 0.2);
+            font-size: 1.1rem;
+        }
+
+        .tax-list li:last-child {
+            border-bottom: none;
+        }
+
+        .tax-visual {
+            text-align: center;
+        }
+
+        .tax-percentage {
+            font-size: 6rem;
+            font-weight: 200;
+            line-height: 1;
+        }
+
+        .tax-label {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Risk Mitigation */
+        .risk-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .risk-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .risk-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        .risk-card h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-blue);
+            text-align: center;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-blue);
+        }
+
+        .risk-list {
+            list-style: none;
+        }
+
+        .risk-list li {
+            padding: 0.75rem 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 2rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .risk-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            background: var(--secondary-dark);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .cta-box {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem;
+            background: var(--card-bg);
+            border: 2px solid var(--accent-gold);
+        }
+
+        .cta-box h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-box p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .primary-btn {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(93, 173, 226, 0.3);
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: var(--accent-gold);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+            border: 1px solid var(--accent-gold);
+            transition: all 0.3s ease;
+        }
+
+        .secondary-btn:hover {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            background: var(--primary-dark);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-right {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .projections-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .market-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tax-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .risk-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.75rem;
+            }
+
+            .risk-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .footer-left {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="pe-investors.html" class="logo">
+                <img src="logo.png" alt="TruePath Data Centers">
+            </a>
+            <ul class="nav-links">
+                <li><a href="pe-investors.html">Home</a></li>
+                <li><a href="truepath-pe-about.html">About</a></li>
+                <li><a href="truepath-pe-team.html">Team</a></li>
+                <li><a href="truepath-pe-careers.html">Careers</a></li>
+                <li><a href="truepath-pe-opportunity.html" class="active">Opportunity</a></li>
+                <li><a href="truepath-pe-contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>The Investment Opportunity</h1>
+        <p>Institutional-grade returns through next-generation AI infrastructure development</p>
+    </header>
+
+    <!-- Financial Projections -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Financial Projections</h2>
+                <p>Conservative underwriting with multiple paths to outperformance</p>
+            </div>
+            
+            <div class="projections-grid">
+                <div class="projection-card">
+                    <h3>Revenue Projections</h3>
+                    <table class="projection-table">
+                        <tr>
+                            <td>Year 1 (50MW)</td>
+                            <td>$162M</td>
+                        </tr>
+                        <tr>
+                            <td>Year 2 (100MW)</td>
+                            <td>$324M</td>
+                        </tr>
+                        <tr>
+                            <td>Year 3 (150MW)</td>
+                            <td>$486M</td>
+                        </tr>
+                        <tr style="background: rgba(52, 152, 219, 0.08); border: 1px solid rgba(93, 173, 226, 0.4);">
+                            <td style="font-weight: 600; color: var(--accent-blue);">Year 4+ (200MW)</td>
+                            <td style="font-weight: 700; color: var(--accent-blue); font-size: 1.2em;">$648M</td>
+                        </tr>
+                        <tr style="background: rgba(52, 152, 219, 0.08); border: 1px solid rgba(93, 173, 226, 0.4);">
+                            <td style="font-weight: 600; color: var(--accent-blue);">Stabilized NOI</td>
+                            <td style="font-weight: 700; color: var(--accent-blue); font-size: 1.2em;">$425M</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="projection-card">
+                    <h3>Return Metrics</h3>
+                    <table class="projection-table">
+                        <tr>
+                            <td>Project IRR</td>
+                            <td>28.3%</td>
+                        </tr>
+                        <tr>
+                            <td>Equity Multiple</td>
+                            <td>2.73x</td>
+                        </tr>
+                        <tr>
+                            <td>Cash-on-Cash (Stabilized)</td>
+                            <td>18.5%</td>
+                        </tr>
+                        <tr>
+                            <td>Average Annual Yield</td>
+                            <td>14.2%</td>
+                        </tr>
+                        <tr>
+                            <td>Payback Period</td>
+                            <td>5.8 Years</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Tax Benefits -->
+    <div class="tax-benefits">
+        <div class="section-container">
+            <div class="tax-content">
+                <div>
+                    <h3>Qualified Opportunity Zone Benefits</h3>
+                    <ul class="tax-list">
+                        <li>Defer capital gains tax until 2027</li>
+                        <li>15% reduction in deferred gain after 7 years</li>
+                        <li>Zero tax on appreciation after 10-year hold</li>
+                        <li>20-year property tax abatement at strategic location</li>
+                        <li>Accelerated depreciation benefits</li>
+                    </ul>
+                </div>
+                <div class="tax-visual">
+                    <div class="tax-percentage">0%</div>
+                    <div class="tax-label">Capital Gains Tax<br>After 10 Years</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Risk Mitigation -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Risk Mitigation</h2>
+                <p>Structured approach to minimize investor risk</p>
+            </div>
+            
+            <div class="risk-grid">
+                <div class="risk-card">
+                    <h4>Construction Risk</h4>
+                    <ul class="risk-list">
+                        <li>Fixed-price contracts with proven vendors</li>
+                        <li>Performance bonds and warranties</li>
+                        <li>Phased deployment reduces concentration</li>
+                        <li>Team track record of 100% on-time delivery</li>
+                    </ul>
+                </div>
+                
+                <div class="risk-card">
+                    <h4>Market Risk</h4>
+                    <ul class="risk-list">
+                        <li>Pre-lease commitments from hyperscalers</li>
+                        <li>Take-or-pay power agreements</li>
+                        <li>Long-term contracts with CPI escalators</li>
+                        <li>Diversified tenant base strategy</li>
+                    </ul>
+                </div>
+                
+                <div class="risk-card">
+                    <h4>Technology Risk</h4>
+                    <ul class="risk-list">
+                        <li>Proven immersion cooling technology deployed globally</li>
+                        <li>Future-proof design for next-gen chips</li>
+                        <li>Modular architecture enables upgrades</li>
+                        <li>Technology partnerships with industry leaders</li>
+                    </ul>
+                </div>
+                
+                <div class="risk-card">
+                    <h4>Financial Risk</h4>
+                    <ul class="risk-list">
+                        <li>Conservative 65% LTV at stabilization</li>
+                        <li>Multiple refinancing checkpoints</li>
+                        <li>Strong DSCR of 1.85x projected</li>
+                        <li>Opportunity Zone tax advantages locked in</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="section-container">
+            <div class="cta-box">
+                <h2>Join Us in Building the Future</h2>
+                <p>Limited partnership interests available for qualified institutional investors</p>
+                <div class="cta-buttons">
+                    <a href="truepath-pe-contact.html" class="primary-btn">Schedule a Meeting</a>
+                    <a href="#" class="secondary-btn">Download Investment Memo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="pe-investors.html" class="logo">
+                    <img src="logo.png" alt="TruePath Data Centers">
+                </a>
+                <ul class="footer-links">
+                    <li><a href="truepath-pe-terms.html">Terms</a></li>
+                    <li><a href="truepath-pe-privacy.html">Privacy</a></li>
+                    <li><a href="truepath-pe-compliance.html">Compliance</a></li>
+                    <li><a href="truepath-pe-sec-filings.html">SEC Filings</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                © 2024 TruePath Data Centers LLC. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

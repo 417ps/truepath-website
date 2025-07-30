@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruePath Data Centers | Building Digital Infrastructure</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #fff;
+            color: #000;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .logo {
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            border: 2px solid #000;
+            transform: rotate(45deg);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #000;
+            transition: opacity 0.3s;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.6;
+        }
+
+        .nav-cta {
+            background: #000;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 3rem 4rem;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: #000;
+            color: #fff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: transform 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            color: #000;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding-bottom: 2px;
+            border-bottom: 1px solid #000;
+            transition: opacity 0.3s;
+        }
+
+        .btn-secondary:hover {
+            opacity: 0.6;
+        }
+
+        .hero-image {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(255,255,255,0.8), transparent);
+        }
+
+        /* Hero Image Placeholder */
+        .hero-image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600"><rect fill="%23f0f0f0" width="600" height="600"/><path fill="%23ddd" d="M100 200 Q 300 100 500 200 L 500 500 L 100 500 Z"/></svg>') center/cover;
+        }
+
+        /* Location Badge */
+        .location-badge {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            background: #000;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Journey Section */
+        .journey-section {
+            padding: 6rem 3rem;
+            background: #fafafa;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .first-step-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #000;
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding-bottom: 2px;
+            border-bottom: 1px solid #000;
+            transition: opacity 0.3s;
+        }
+
+        .first-step-link:hover {
+            opacity: 0.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 3rem;
+            background: #f0f0f0;
+        }
+
+        .cta-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .cta-text h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .cta-text p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .auth-framework {
+            padding: 2rem;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+        }
+
+        .auth-framework h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .framework-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .framework-item h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .framework-item p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Form Section */
+        .form-container {
+            background: #fff;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-container h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .form-container p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #000;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 0.25rem;
+        }
+
+        .checkbox-group label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #000;
+            color: #fff;
+            padding: 1rem;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 3rem 2rem;
+            background: #000;
+            color: #fff;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .footer-quote {
+            font-style: italic;
+            color: #999;
+            max-width: 400px;
+        }
+
+        .footer-bottom {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid #333;
+        }
+
+        .footer-column h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column a {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.9rem;
+            line-height: 2;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #fff;
+        }
+
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <div class="logo-icon"></div>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#">Start Here</a></li>
+            <li><a href="#">Our Blog</a></li>
+            <li><a href="#">Podcast</a></li>
+            <li><a href="#">Newsletter</a></li>
+        </ul>
+        <a href="#" class="nav-cta">Get in Touch</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to<br>TruePath.</h1>
+            <p>We help innovative companies build next-generation data center infrastructure.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary">START YOUR JOURNEY</a>
+                <a href="#" class="btn-secondary">LEARN MORE →</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="hero-image-placeholder"></div>
+            <div class="location-badge">Albuquerque, New Mexico—United States</div>
+        </div>
+    </section>
+
+    <section class="journey-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Start your journey.</h2>
+                <p>Come as you are. Bring your vision, your technical challenges, your infrastructure needs—and let's turn them into something extraordinary.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🏗️</div>
+                    <h3>Be Integrated.</h3>
+                    <p>We provide complete vertical integration from land acquisition through construction and operation, ensuring seamless project delivery.</p>
+                    <a href="#" class="first-step-link">TAKE THE FIRST STEP TODAY →</a>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Get Connected.</h3>
+                    <p>Join industry leaders, innovative startups, and visionary investors building the infrastructure that powers tomorrow's digital economy.</p>
+                    <a href="#" class="first-step-link">TAKE THE FIRST STEP TODAY →</a>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Scale Efficiently.</h3>
+                    <p>Leverage cutting-edge immersion cooling and operational excellence to achieve 8-10x footprint reduction and industry-leading efficiency.</p>
+                    <a href="#" class="first-step-link">TAKE THE FIRST STEP TODAY →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <div class="cta-text">
+                <h2>Get started today.</h2>
+                <p>Introducing the TruePath Framework™ for data center development.</p>
+                
+                <div class="auth-framework">
+                    <h3>TruePath Framework</h3>
+                    <div class="framework-grid">
+                        <div class="framework-item">
+                            <h4>Strategic Location</h4>
+                            <p>Southwest positioning with competitive advantages in cost, connectivity, and climate.</p>
+                        </div>
+                        <div class="framework-item">
+                            <h4>Proven Expertise</h4>
+                            <p>25+ years delivering mission-critical infrastructure for national laboratories.</p>
+                        </div>
+                        <div class="framework-item">
+                            <h4>Superior Technology</h4>
+                            <p>Immersion cooling delivering unprecedented efficiency and density.</p>
+                        </div>
+                        <div class="framework-item">
+                            <h4>Financial Excellence</h4>
+                            <p>Target 18-21% IRR with proven development and operational strategies.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-container">
+                <h3>Start your journey.</h3>
+                <p>We help innovative companies build next-generation data center infrastructure.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">I accept the terms of service and privacy policy.</label>
+                    </div>
+                    <button type="submit" class="submit-btn">GET STARTED TODAY</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-logo">◆</div>
+                <p class="footer-quote">"The key to building an authentic business is building an authentic life." — Brian Gardner</p>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-column">
+                    <h4>ABOUT</h4>
+                    <ul>
+                        <li><a href="#">Start Here</a></li>
+                        <li><a href="#">Our Blog</a></li>
+                        <li><a href="#">Podcast</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>SERVICES</h4>
+                    <ul>
+                        <li><a href="#">Consulting</a></li>
+                        <li><a href="#">Social Media</a></li>
+                        <li><a href="#">Web Design</a></li>
+                        <li><a href="#">Get in Touch</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>RESOURCES</h4>
+                    <ul>
+                        <li><a href="#">Themes</a></li>
+                        <li><a href="#">Web Fonts</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Daily Reads</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>CONNECT</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2024 • ALL RIGHTS RESERVED</p>
+                <p>WE BELIEVE</p>
+                <p>CREATE HONESTLY.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruePath Data Centers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Main Container with Border */
+        .main-container {
+            margin: 20px;
+            border: 2px solid #fff;
+            min-height: calc(100vh - 40px);
+            position: relative;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+        }
+
+        .contact-info {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 70vh;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23111" width="1200" height="600"/><polygon fill="%23222" points="600,200 800,400 400,400"/><rect fill="%23333" x="300" y="250" width="600" height="200"/></svg>') center/cover;
+            filter: brightness(0.5);
+        }
+
+        .hero-content {
+            position: absolute;
+            bottom: 3rem;
+            left: 3rem;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #000;
+            color: #fff;
+            border: 1px solid #fff;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 4rem 3rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .about-section h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-item h3 {
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        /* Hashtag Navigation */
+        .hashtag-nav {
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hashtag-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .hashtag-nav a:hover {
+            opacity: 1;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 4rem 3rem;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .benefit-card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.7;
+        }
+
+        /* Gallery Preview */
+        .gallery-preview {
+            padding: 4rem 3rem;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 400px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23222" width="1200" height="400"/><rect fill="%23444" x="100" y="50" width="200" height="300"/><rect fill="%23555" x="500" y="50" width="200" height="300"/><rect fill="%23666" x="900" y="50" width="200" height="300"/></svg>') center/cover;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .main-container {
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+            <div class="logo">TRUEPATH</div>
+            <div class="contact-info">+1 (505) 915-1515</div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-image"></div>
+            <div class="hero-content">
+                <h1>BUILD YOUR<br>DIGITAL FUTURE<br>INTO REALITY</h1>
+                <a href="#" class="cta-button">LEARN MORE</a>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2>ABOUT OUR COMPANY</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>EXPERTISE</h3>
+                    <p>25+ years of hands-on data center development and operations at Los Alamos and Sandia National Laboratories</p>
+                </div>
+                <div class="feature-item">
+                    <h3>INNOVATION</h3>
+                    <p>Immersion cooling technology enabling 8-10x reduction in footprint with industry-leading 1.02 PUE</p>
+                </div>
+                <div class="feature-item">
+                    <h3>INTEGRATION</h3>
+                    <p>Full vertical integration from land acquisition through construction, operation, and monetization</p>
+                </div>
+            </div>
+        </section>
+
+        <nav class="hashtag-nav">
+            <a href="#">#EFFICIENT</a>
+            <a href="#">#RELIABLE</a>
+            <a href="#">#INNOVATIVE</a>
+            <a href="#">#SUSTAINABLE</a>
+            <a href="#">#SECURE</a>
+            <a href="#">#SCALABLE</a>
+        </nav>
+
+        <section class="benefits-section">
+            <h2 class="section-title">OUR ADVANTAGES</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>FIXED PRICING</h3>
+                    <p>Long-term power purchase agreements with competitive rates locked for 20 years</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📊</div>
+                    <h3>QUALITY MATERIALS</h3>
+                    <p>Tier 4 specifications for mission-critical operations ensuring maximum uptime</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏗️</div>
+                    <h3>10 YEAR WARRANTY</h3>
+                    <p>Industry-leading warranty backed by proven expertise and financial stability</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📐</div>
+                    <h3>FREE DELIVERY</h3>
+                    <p>Turn-key solutions with complete project management from inception to operation</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏠</div>
+                    <h3>READY IN 30 DAYS</h3>
+                    <p>Rapid deployment capabilities with modular construction methodologies</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>MODERN DESIGN</h3>
+                    <p>Next-generation infrastructure designed for AI and high-performance computing</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-preview">
+            <div class="gallery-image"></div>
+        </section>
+    </div>
+</body>
+</html>

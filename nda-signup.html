@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruePath Data Centers | Business Plan Access</title>
+    <style>
+        /* Anti-flash navigation protection - loads before any JS */
+        .global-nav,
+        .navbar,
+        nav {
+            background: rgba(10, 10, 10, 0.95) !important;
+            backdrop-filter: blur(20px) !important;
+        }
+        .global-nav *,
+        .navbar *,
+        nav * {
+            color: #b8b8b8 !important;
+            background: transparent !important;
+        }
+        .global-nav .nav-link:hover,
+        .global-nav .nav-link.active,
+        .navbar .nav-link:hover,
+        .navbar .nav-link.active,
+        nav .nav-link:hover,
+        nav .nav-link.active {
+            color: #d4af37 !important;
+        }
+
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #141414;
+            --accent-gold: #5DADE2;
+            --accent-blue: #3498DB;
+            --text-primary: #ffffff;
+            --text-secondary: #c9c9c9;
+            --text-muted: #888888;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.02);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica Neue', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--primary-dark);
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: inline-block;
+            height: 40px;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 100%;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-links a.active {
+            color: var(--accent-gold);
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 2px;
+        }
+
+        .investor-login {
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 0.5rem 1.5rem;
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+        }
+
+        .investor-login:hover {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 6rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to bottom, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* NDA Form Section */
+        .nda-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 4rem;
+            text-align: center;
+        }
+
+        .nda-header {
+            margin-bottom: 3rem;
+        }
+
+        .nda-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .nda-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .confidential-notice {
+            background: var(--secondary-dark);
+            border: 1px solid var(--accent-gold);
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+            border-radius: 4px;
+        }
+
+        .confidential-notice h3 {
+            color: var(--accent-gold);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .confidential-notice p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Form Styles */
+        .nda-form {
+            text-align: left;
+            margin-bottom: 3rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .form-input {
+            background: var(--secondary-dark);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 1rem;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* NDA Agreement Text */
+        .nda-agreement {
+            background: var(--secondary-dark);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .nda-agreement h4 {
+            color: var(--accent-gold);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .nda-agreement p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* Checkbox Agreement */
+        .agreement-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--secondary-dark);
+            border: 1px solid var(--border-color);
+        }
+
+        .checkbox-input {
+            margin-top: 0.25rem;
+            transform: scale(1.2);
+        }
+
+        .checkbox-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            padding: 1rem 3rem;
+            border: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(93, 173, 226, 0.3);
+        }
+
+        .submit-btn:disabled {
+            background: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Error Messages */
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .form-group.error .form-input {
+            border-color: #ff6b6b;
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            background: var(--primary-dark);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-content {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .nda-section {
+                padding: 2rem;
+            }
+            
+            .nda-title {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="pe-investors.html" class="logo">
+                <img src="logo.png" alt="TruePath Data Centers">
+            </a>
+            <ul class="nav-links">
+                <li><a href="pe-investors.html">Home</a></li>
+                <li><a href="truepath-pe-about.html">About</a></li>
+                <li><a href="truepath-pe-team.html">Team</a></li>
+                <li><a href="nda-signup.html" class="active">Business Plan</a></li>
+                <li><a href="truepath-pe-opportunity.html">Opportunity</a></li>
+                <li><a href="truepath-pe-contact.html">Contact</a></li>
+                <li><a href="truepath-index.html" class="investor-login">Main Site</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <div class="nda-section">
+                <div class="nda-header">
+                    <h1 class="nda-title">Confidential Business Plan Access</h1>
+                    <p class="nda-subtitle">
+                        Access to our detailed investment memorandum requires authorization
+                    </p>
+                </div>
+
+                <div class="confidential-notice">
+                    <h3>Confidential Information</h3>
+                    <p>
+                        The TruePath Data Centers business plan contains proprietary financial projections, strategic plans, and competitive intelligence. Access is restricted to qualified institutional investors and requires agreement to confidentiality terms.
+                    </p>
+                </div>
+
+                <form class="nda-form" id="ndaForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Enter first name" required>
+                            <div class="error-message">First name is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Enter last name" required>
+                            <div class="error-message">Last name is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="Enter email address" required>
+                            <div class="error-message">Valid email address is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-input" placeholder="Enter phone number">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="company">Company *</label>
+                            <input type="text" id="company" name="company" class="form-input" placeholder="Enter company name" required>
+                            <div class="error-message">Company name is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="title">Title *</label>
+                            <input type="text" id="title" name="title" class="form-input" placeholder="Enter job title" required>
+                            <div class="error-message">Job title is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label class="form-label" for="investmentInterest">Investment Interest</label>
+                        <input type="text" id="investmentInterest" name="investmentInterest" class="form-input" placeholder="Brief description of investment interest (optional)">
+                    </div>
+                </form>
+
+                <div class="authorization-section" style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px;">
+                    <h4 style="margin-bottom: 1.5rem; color: var(--accent-gold);">Authorization Required</h4>
+                    <p style="margin-bottom: 2rem; color: var(--text-secondary); line-height: 1.6;">
+                        After submitting your information above, click the button below to complete the authorization process and gain access to our confidential business plan.
+                    </p>
+                    <a href="https://mtinm.sharefile.com/signaturerequests/signers/20d35294-6ef4-4f7b-9c7a-334d163c775c/sign?identity_token=QXdY-TTVBpdWXYx3cs2h" 
+                       class="submit-btn" 
+                       id="authorizeBtn"
+                       style="display: inline-block; text-decoration: none; background: var(--accent-gold); color: var(--primary-dark); font-weight: 600;">
+                        Click to Authorize
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2024 TruePath Data Centers LLC. All rights reserved.</p>
+            <p>This page contains confidential and proprietary information.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form validation
+        const form = document.getElementById('ndaForm');
+        const authorizeBtn = document.getElementById('authorizeBtn');
+        
+        // Initially disable the authorize button
+        authorizeBtn.style.pointerEvents = 'none';
+        authorizeBtn.style.opacity = '0.5';
+        authorizeBtn.innerHTML = 'Please Complete Form Above';
+
+        // Function to check if form is valid
+        function checkFormValidity() {
+            const requiredFields = ['firstName', 'lastName', 'email', 'company', 'title'];
+            let isValid = true;
+            
+            requiredFields.forEach(fieldName => {
+                const field = document.getElementById(fieldName);
+                if (!field.value.trim()) {
+                    isValid = false;
+                }
+            });
+            
+            // Email validation
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email.value && !emailRegex.test(email.value)) {
+                isValid = false;
+            }
+            
+            // Enable/disable authorize button based on form validity
+            if (isValid) {
+                authorizeBtn.style.pointerEvents = 'auto';
+                authorizeBtn.style.opacity = '1';
+                authorizeBtn.innerHTML = 'Click to Authorize';
+            } else {
+                authorizeBtn.style.pointerEvents = 'none';
+                authorizeBtn.style.opacity = '0.5';
+                authorizeBtn.innerHTML = 'Please Complete Form Above';
+            }
+            
+            return isValid;
+        }
+
+        // Check form validity on input
+        form.addEventListener('input', checkFormValidity);
+        
+        // Handle authorize button click
+        authorizeBtn.addEventListener('click', function(e) {
+            if (!checkFormValidity()) {
+                e.preventDefault();
+                
+                // Validate and show errors
+                const requiredFields = ['firstName', 'lastName', 'email', 'company', 'title'];
+                requiredFields.forEach(fieldName => {
+                    const field = document.getElementById(fieldName);
+                    const formGroup = field.closest('.form-group');
+                    
+                    if (!field.value.trim()) {
+                        formGroup.classList.add('error');
+                    } else {
+                        formGroup.classList.remove('error');
+                    }
+                });
+                
+                // Email validation
+                const email = document.getElementById('email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (email.value && !emailRegex.test(email.value)) {
+                    email.closest('.form-group').classList.add('error');
+                }
+                
+                // Scroll to first error
+                const firstError = document.querySelector('.form-group.error');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            } else {
+                // Form is valid, store data before redirecting
+                sessionStorage.setItem('ndaFormData', JSON.stringify({
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    email: document.getElementById('email').value,
+                    company: document.getElementById('company').value,
+                    title: document.getElementById('title').value,
+                    phone: document.getElementById('phone').value,
+                    investmentInterest: document.getElementById('investmentInterest').value
+                }));
+            }
+        });
+
+        // Real-time validation feedback
+        const inputs = form.querySelectorAll('input[required]');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                const formGroup = this.closest('.form-group');
+                if (!this.value.trim()) {
+                    formGroup.classList.add('error');
+                } else {
+                    formGroup.classList.remove('error');
+                }
+                checkFormValidity();
+            });
+            
+            input.addEventListener('input', function() {
+                const formGroup = this.closest('.form-group');
+                if (this.value.trim()) {
+                    formGroup.classList.remove('error');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

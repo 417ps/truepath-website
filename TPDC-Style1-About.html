@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | TruePath Data Centers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #e5e5e5;
+            color: #000;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(229, 229, 229, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            opacity: 1;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 10rem 3rem 4rem;
+            text-align: center;
+            background: #fff;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .page-header .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Genesis Section */
+        .section {
+            padding: 4rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .genesis-section {
+            background: #fff;
+        }
+
+        .genesis-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .section-label {
+            font-size: 8rem;
+            font-weight: 300;
+            opacity: 0.1;
+            line-height: 1;
+        }
+
+        .content-text h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .content-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Timeline */
+        .timeline-section {
+            background: #fafafa;
+            padding: 4rem 3rem;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-date {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #999;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Values Section */
+        .values-section {
+            background: #fff;
+            padding: 4rem 3rem;
+        }
+
+        .values-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .values-header h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .value-number {
+            font-size: 3rem;
+            font-weight: 300;
+            opacity: 0.2;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .value-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: #333;
+            color: #fff;
+            padding: 6rem 3rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: transparent;
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+            font-family: -apple-system, sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .cta-button:hover {
+            background: #fff;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .genesis-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">TruePath</div>
+        <ul class="nav-menu">
+            <li><a href="TPDC-Style1-Minimal-Architecture.html">Home</a></li>
+            <li><a href="TPDC-Style1-About.html" class="active">About</a></li>
+            <li><a href="TPDC-Style1-Team.html">Team</a></li>
+            <li><a href="TPDC-Style1-Opportunity.html">Opportunity</a></li>
+            <li><a href="TPDC-Style1-Contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="page-header">
+        <h1>Our Story</h1>
+        <p class="subtitle">From national laboratories to the next generation of data infrastructure</p>
+    </section>
+
+    <section class="section genesis-section">
+        <div class="genesis-content">
+            <div class="section-label">01</div>
+            <div class="content-text">
+                <h2>The Genesis</h2>
+                <p>TruePath Data Centers emerged from a unique confluence of expertise and opportunity. Our founder, Michael Sanchez, first entered a data center at age 16 while working for his father's construction company at Los Alamos National Laboratory.</p>
+                <p>This early exposure to mission-critical computing infrastructure would define a career trajectory spanning over two decades, building and operating data centers for the world's fastest supercomputers.</p>
+                <p>Today, we leverage this unparalleled background to deliver next-generation data center solutions to meet the explosive demands of AI and digital transformation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section">
+        <div class="timeline">
+            <h2 style="text-align: center; font-size: 2.5rem; font-weight: 300; margin-bottom: 3rem;">Our Journey</h2>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">2000s</div>
+                <div class="timeline-content">
+                    <h3>Building Expertise</h3>
+                    <p>Gained intimate knowledge of data center operations at Los Alamos and Sandia National Laboratories, supporting systems critical to national security.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">2010s</div>
+                <div class="timeline-content">
+                    <h3>Scaling Success</h3>
+                    <p>Transformed Cross Connection from $4M to $30M annual revenue through systematic improvements in project management and operational efficiency.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">2020s</div>
+                <div class="timeline-content">
+                    <h3>Real Estate Evolution</h3>
+                    <p>Mastered real estate investment, private capital raising, and portfolio management, setting the stage for TruePath's unique approach.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">2024</div>
+                <div class="timeline-content">
+                    <h3>TruePath Founded</h3>
+                    <p>Combining decades of data center expertise with innovative real estate strategies to revolutionize Southwest data infrastructure.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <div class="values-header">
+            <h2>Our Core Values</h2>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-number">01</div>
+                <h3>Leadership</h3>
+                <p>We lead by example, taking ownership and inspiring others to achieve excellence in every aspect of our work.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-number">02</div>
+                <h3>Integrity</h3>
+                <p>We do the right thing especially when no one is watching, building trust through consistent ethical behavior.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-number">03</div>
+                <h3>Faith</h3>
+                <p>We believe in our mission, our team, and our ability to overcome challenges through perseverance and dedication.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-number">04</div>
+                <h3>Excellence</h3>
+                <p>We pursue the highest standards in everything we do, from technical execution to client relationships.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-number">05</div>
+                <h3>Creativity</h3>
+                <p>We innovate boldly, finding unique solutions to complex challenges in data center development.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-number">06</div>
+                <h3>Enjoyment</h3>
+                <p>We foster a culture where passion meets purpose, making our workplace energizing and fulfilling.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready to Build the Future?</h2>
+        <a href="TPDC-Style1-Opportunity.html" class="cta-button">Explore the Opportunity</a>
+    </section>
+</body>
+</html>

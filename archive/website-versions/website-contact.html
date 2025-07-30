@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - TruePath Data Centers</title>
+    <meta name="description" content="Contact TruePath Data Centers for investor inquiries, partnership opportunities, or career applications. Connect with our team of AI infrastructure experts.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://static.wixstatic.com/ufonts/c7fb37_d1e3cf2ecebf48bfbd99dc7de026be46/woff2/file.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+    <link href="https://static.wixstatic.com/ufonts/c7fb37_7c481a9f9e764a14a72c55ff0d40b0e7/woff2/file.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>TruePath Data Centers</h2>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="team.html" class="nav-link">Team</a>
+                <a href="careers.html" class="nav-link">Careers</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+                <a href="index.html#request-deck" class="nav-link">Request Investor Deck</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 60vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/marvin-meyer-SYTO3xs06fU-unsplash.jpg') center/cover;">
+        <div class="hero-content">
+            <h1 style="color: white;">Contact TruePath Data Centers</h1>
+            <p class="hero-subtitle" style="color: white;">Let's Build the Future Together</p>
+            <p class="hero-description" style="color: white;">
+                Whether you're an investor, potential partner, prospective team member, or have questions 
+                about our AI infrastructure projects, we'd love to hear from you.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Options -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>Multiple ways to connect with our team</p>
+            </div>
+            <div class="three-columns">
+                <div class="column">
+                    <h3>Investors</h3>
+                    <h4>Investment Opportunities</h4>
+                    <p>Interested in learning about investment opportunities in AI infrastructure? Request our detailed investor deck and schedule a confidential discussion.</p>
+                    <a href="#investor-contact" class="btn btn-primary">Investor Inquiries</a>
+                </div>
+                <div class="column">
+                    <h3>Partners</h3>
+                    <h4>Strategic Partnerships</h4>
+                    <p>Explore partnership opportunities including tenant pre-leasing, technology partnerships, and joint venture development opportunities.</p>
+                    <a href="#partner-contact" class="btn btn-primary">Partnership Inquiries</a>
+                </div>
+                <div class="column">
+                    <h3>Careers</h3>
+                    <h4>Join Our Team</h4>
+                    <p>Looking to advance your career in data center development? Submit your resume or apply for one of our open positions.</p>
+                    <a href="#career-contact" class="btn btn-primary">Career Inquiries</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Direct Contact Information -->
+    <section class="section" style="background: var(--secondary-dark);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Direct Contact</h2>
+                <p>Reach our team directly</p>
+            </div>
+            <div class="three-columns">
+                <div class="column">
+                    <h3>Phone</h3>
+                    <h4>Immediate Response</h4>
+                    <p style="font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin-bottom: 10px;">(505) 417-3530</p>
+                    <p>Business hours: Monday - Friday, 8:00 AM - 6:00 PM MST</p>
+                    <p>For urgent matters, please call directly and leave a detailed message.</p>
+                </div>
+                <div class="column">
+                    <h3>Email</h3>
+                    <h4>Detailed Inquiries</h4>
+                    <p style="font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin-bottom: 10px;">investors@truepathdc.com</p>
+                    <p>We respond to all emails within 24 hours during business days.</p>
+                    <p>Please include relevant details about your inquiry for faster response.</p>
+                </div>
+                <div class="column">
+                    <h3>Office</h3>
+                    <h4>New Mexico Location</h4>
+                    <p style="font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); margin-bottom: 10px;">Los Alamos, New Mexico</p>
+                    <p>Meetings by appointment only.</p>
+                    <p>Please call or email to schedule in-person meetings with our team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investor Contact Form -->
+    <section id="investor-contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Investor Inquiries</h2>
+                <p>Request detailed information about investment opportunities</p>
+            </div>
+            <div class="form-container">
+                <form id="investor-form">
+                    <div class="form-group">
+                        <label for="inv-name">Full Name *</label>
+                        <input type="text" id="inv-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inv-email">Email Address *</label>
+                        <input type="email" id="inv-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inv-phone">Phone Number</label>
+                        <input type="tel" id="inv-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="inv-organization">Organization/Fund</label>
+                        <input type="text" id="inv-organization" name="organization">
+                    </div>
+                    <div class="form-group">
+                        <label for="inv-type">Investment Interest</label>
+                        <select id="inv-type" name="investment-type">
+                            <option value="">Select Investment Type</option>
+                            <option value="equity-investor">Equity Investor</option>
+                            <option value="debt-financing">Debt Financing</option>
+                            <option value="joint-venture">Joint Venture Partner</option>
+                            <option value="family-office">Family Office</option>
+                            <option value="institutional">Institutional Investor</option>
+                            <option value="real-estate-fund">Real Estate Fund</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inv-amount">Investment Range</label>
+                        <select id="inv-amount" name="investment-amount">
+                            <option value="">Select Range (Optional)</option>
+                            <option value="under-1m">Under $1M</option>
+                            <option value="1m-5m">$1M - $5M</option>
+                            <option value="5m-10m">$5M - $10M</option>
+                            <option value="10m-25m">$10M - $25M</option>
+                            <option value="25m-plus">$25M+</option>
+                            <option value="undisclosed">Prefer not to disclose</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inv-timeline">Investment Timeline</label>
+                        <select id="inv-timeline" name="timeline">
+                            <option value="">Select Timeline</option>
+                            <option value="immediate">Ready to proceed immediately</option>
+                            <option value="3-months">Within 3 months</option>
+                            <option value="6-months">Within 6 months</option>
+                            <option value="12-months">Within 12 months</option>
+                            <option value="exploring">Currently exploring options</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inv-message">Additional Information</label>
+                        <textarea id="inv-message" name="message" rows="4" placeholder="Tell us about your investment criteria, specific questions, or any additional information that would help us prepare for our conversation..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Request Investor Deck</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Contact Form -->
+    <section id="partner-contact" class="section" style="background: var(--secondary-dark);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Partnership Inquiries</h2>
+                <p>Explore strategic partnership opportunities</p>
+            </div>
+            <div class="form-container">
+                <form id="partner-form">
+                    <div class="form-group">
+                        <label for="part-name">Full Name *</label>
+                        <input type="text" id="part-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="part-email">Email Address *</label>
+                        <input type="email" id="part-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="part-phone">Phone Number</label>
+                        <input type="tel" id="part-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="part-company">Company/Organization *</label>
+                        <input type="text" id="part-company" name="company" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="part-title">Title/Role</label>
+                        <input type="text" id="part-title" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="part-type">Partnership Interest</label>
+                        <select id="part-type" name="partnership-type">
+                            <option value="">Select Partnership Type</option>
+                            <option value="tenant-leasing">Tenant/Leasing Opportunity</option>
+                            <option value="technology-vendor">Technology Vendor Partnership</option>
+                            <option value="construction-contractor">Construction/Contractor Services</option>
+                            <option value="joint-venture">Joint Venture Development</option>
+                            <option value="utility-provider">Utility/Energy Provider</option>
+                            <option value="professional-services">Professional Services</option>
+                            <option value="other">Other Partnership</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="part-message">Partnership Proposal</label>
+                        <textarea id="part-message" name="message" rows="5" placeholder="Please describe your partnership proposal, including what your organization offers, what you're looking for, and any specific requirements or timelines..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Partnership Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Contact Form -->
+    <section id="career-contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Career Applications</h2>
+                <p>Join our team building AI infrastructure</p>
+            </div>
+            <div class="form-container">
+                <form id="career-form">
+                    <div class="form-group">
+                        <label for="car-name">Full Name *</label>
+                        <input type="text" id="car-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="car-email">Email Address *</label>
+                        <input type="email" id="car-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="car-phone">Phone Number</label>
+                        <input type="tel" id="car-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="car-position">Position of Interest</label>
+                        <select id="car-position" name="position">
+                            <option value="">Select Position or General Application</option>
+                            <option value="project-manager">Senior Project Manager - Data Center Development</option>
+                            <option value="electrical-engineer">Senior Electrical Engineer</option>
+                            <option value="mechanical-engineer">Mechanical Engineer - Cooling Systems</option>
+                            <option value="business-development">Director of Business Development</option>
+                            <option value="financial-analyst">Senior Financial Analyst</option>
+                            <option value="construction-manager">Construction Manager</option>
+                            <option value="general-application">General Application</option>
+                            <option value="other">Other (please specify in message)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="car-experience">Years of Relevant Experience</label>
+                        <select id="car-experience" name="experience">
+                            <option value="">Select Experience Level</option>
+                            <option value="entry-level">Entry Level (0-2 years)</option>
+                            <option value="mid-level">Mid-Level (3-7 years)</option>
+                            <option value="senior-level">Senior Level (8-15 years)</option>
+                            <option value="executive-level">Executive Level (15+ years)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="car-salary">Salary Expectations</label>
+                        <select id="car-salary" name="salary">
+                            <option value="">Select Range (Optional)</option>
+                            <option value="60k-80k">$60,000 - $80,000</option>
+                            <option value="80k-100k">$80,000 - $100,000</option>
+                            <option value="100k-125k">$100,000 - $125,000</option>
+                            <option value="125k-150k">$125,000 - $150,000</option>
+                            <option value="150k-200k">$150,000 - $200,000</option>
+                            <option value="200k-plus">$200,000+</option>
+                            <option value="open">Open to discussion</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="car-availability">Availability</label>
+                        <select id="car-availability" name="availability">
+                            <option value="">Select Availability</option>
+                            <option value="immediate">Available immediately</option>
+                            <option value="2-weeks">Available with 2 weeks notice</option>
+                            <option value="1-month">Available within 1 month</option>
+                            <option value="3-months">Available within 3 months</option>
+                            <option value="exploring">Currently exploring opportunities</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="car-message">Cover Letter / Additional Information</label>
+                        <textarea id="car-message" name="message" rows="5" placeholder="Tell us about your background, relevant experience, and why you're interested in joining TruePath Data Centers. Include any specific skills or achievements that make you a strong candidate..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="car-resume">Resume Attachment</label>
+                        <p style="font-size: 0.9rem; color: var(--medium-gray); margin-bottom: 10px;">Please email your resume to investors@truepathdc.com along with this application, or provide a link to your LinkedIn profile below.</p>
+                        <input type="url" id="car-linkedin" name="linkedin" placeholder="LinkedIn Profile URL">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- General Contact -->
+    <section class="section" style="background: var(--secondary-dark);">
+        <div class="container">
+            <div class="section-header">
+                <h2>General Inquiries</h2>
+                <p>For any other questions or information requests</p>
+            </div>
+            <div class="form-container">
+                <form id="general-form">
+                    <div class="form-group">
+                        <label for="gen-name">Full Name *</label>
+                        <input type="text" id="gen-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gen-email">Email Address *</label>
+                        <input type="email" id="gen-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gen-phone">Phone Number</label>
+                        <input type="tel" id="gen-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="gen-subject">Subject</label>
+                        <input type="text" id="gen-subject" name="subject" placeholder="Brief description of your inquiry">
+                    </div>
+                    <div class="form-group">
+                        <label for="gen-type">Inquiry Type</label>
+                        <select id="gen-type" name="inquiry-type">
+                            <option value="">Select Inquiry Type</option>
+                            <option value="media">Media/Press Inquiry</option>
+                            <option value="community">Community Relations</option>
+                            <option value="vendor">Vendor/Supplier Inquiry</option>
+                            <option value="academic">Academic/Research</option>
+                            <option value="government">Government Relations</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gen-message">Message *</label>
+                        <textarea id="gen-message" name="message" rows="5" placeholder="Please provide details about your inquiry..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Response Times -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Response Times</h2>
+                <p>What to expect after you contact us</p>
+            </div>
+            <div class="three-columns">
+                <div class="column">
+                    <h3>Investor Inquiries</h3>
+                    <h4>Same Day Response</h4>
+                    <p>We respond to qualified investor inquiries within 4-6 hours during business days. Complex requests may require additional time for detailed responses.</p>
+                </div>
+                <div class="column">
+                    <h3>Partnership Inquiries</h3>
+                    <h4>24-48 Hour Response</h4>
+                    <p>Partnership inquiries are reviewed and responded to within 1-2 business days. We may request additional information before scheduling calls.</p>
+                </div>
+                <div class="column">
+                    <h3>Career Applications</h3>
+                    <h4>1 Week Response</h4>
+                    <p>We review all applications thoroughly and respond within one week. Qualified candidates are contacted for initial phone screenings.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Notice -->
+    <section class="section" style="background: var(--secondary-dark);">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <h3 style="margin-bottom: 20px;">Privacy & Confidentiality</h3>
+                <p style="color: var(--medium-gray); line-height: 1.6;">
+                    All information submitted through our contact forms is kept strictly confidential. We do not share, sell, 
+                    or distribute contact information to third parties. Investor inquiries are handled with appropriate 
+                    confidentiality agreements when detailed financial information is shared.
+                </p>
+                <p style="margin-top: 20px;">
+                    <a href="privacy.html" style="color: var(--accent-blue);">Read our full Privacy Policy</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TruePath Data Centers</h3>
+                    <p>Building AI infrastructure for tomorrow with investor-first returns and tax-advantaged growth strategies.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="team.html">Leadership Team</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Investors</h4>
+                    <ul>
+                        <li><a href="index.html#request-deck">Request Deck</a></li>
+                        <li><a href="about.html#returns">Return Structure</a></li>
+                        <li><a href="about.html#timeline">Timeline</a></li>
+                        <li><a href="about.html#advantages">Advantages</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Information</h4>
+                    <p>Email: investors@truepathdc.com</p>
+                    <p>Phone: (505) 417-3530</p>
+                    <p>Location: New Mexico, USA</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TruePath Data Centers. All rights reserved. | <a href="privacy.html">Privacy Policy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

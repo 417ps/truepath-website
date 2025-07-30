@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruePath Data Centers | 2024</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #8a8a8a;
+            color: #fff;
+            overflow-x: hidden;
+            font-weight: 300;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        .logo {
+            font-weight: 400;
+        }
+
+        .year {
+            font-weight: 300;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23666" width="1200" height="800"/><rect fill="%23444" x="100" y="200" width="400" height="400"/><rect fill="%23555" x="700" y="100" width="400" height="500"/></svg>') center/cover;
+            filter: brightness(0.7);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 0 3rem;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            font-weight: 200;
+            opacity: 0.8;
+        }
+
+        /* Vertical Line */
+        .vertical-line {
+            position: fixed;
+            left: 50%;
+            top: 0;
+            width: 1px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: 1;
+        }
+
+        /* Content Sections */
+        .content-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 3rem;
+            position: relative;
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            align-items: center;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            opacity: 0.6;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        /* Animation Section */
+        .animation-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: #757575;
+        }
+
+        .animation-text {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            opacity: 0.6;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 3rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            color: #fff;
+            text-decoration: none;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .bottom-nav a:hover {
+            opacity: 1;
+        }
+
+        /* Orange Accent */
+        .accent {
+            color: #ff6b35;
+        }
+
+        .accent-bar {
+            width: 60px;
+            height: 2px;
+            background: #ff6b35;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .vertical-line {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="vertical-line"></div>
+
+    <header class="header">
+        <div class="logo">TruePath Data Centers</div>
+        <div class="year">2024</div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <div class="hero-image"></div>
+            <div class="hero-content">
+                <h1>Next-Generation<br>Infrastructure</h1>
+                <p class="subtitle">Southwest Data Center Development</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="content-wrapper">
+                <div>
+                    <div class="section-label">About Project</div>
+                    <div class="accent-bar"></div>
+                </div>
+                <div>
+                    <h2 class="section-title">Design concept of a vertically integrated data center company</h2>
+                    <p class="section-text">
+                        TruePath Data Centers represents the convergence of decades of mission-critical data center expertise with innovative real estate investment strategies. We maintain complete control from land acquisition through construction and operation.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="animation-section">
+            <div class="animation-text">ANIMATION</div>
+        </section>
+
+        <section class="content-section">
+            <div class="content-wrapper">
+                <div>
+                    <h2 class="section-title">Immersion Cooling <span class="accent">Technology</span></h2>
+                    <p class="section-text">
+                        8-10x reduction in physical footprint. PUE optimization from industry standard 1.40 to 1.02. Dramatic reduction in water consumption.
+                    </p>
+                </div>
+                <div>
+                    <div class="section-label">Innovation</div>
+                    <div class="accent-bar"></div>
+                    <p class="section-text">
+                        Our cutting-edge cooling solutions enable unprecedented rack density and efficiency, transforming the economics of data center development in the Southwest market.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="#">Prev</a>
+        <a href="#">Grid</a>
+        <a href="#">Next</a>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Path Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .dark-bg {
+            background-color: #1a1a1a;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Logo Path Testing</h1>
+    
+    <div class="test-container">
+        <h2>SVG Logo (Current Path)</h2>
+        <p><strong>Path:</strong> ../assets/logos/truepath-logo-horizontal.svg</p>
+        <img src="../assets/logos/truepath-logo-horizontal.svg" alt="TruePath SVG Logo" style="height: 50px; border: 1px solid #ccc;">
+        <p>If you see a white box, the SVG path is broken.</p>
+    </div>
+    
+    <div class="test-container dark-bg">
+        <h2>SVG Logo on Dark Background</h2>
+        <img src="../assets/logos/truepath-logo-horizontal.svg" alt="TruePath SVG Logo" style="height: 50px; border: 1px solid #555;">
+    </div>
+    
+    <div class="test-container">
+        <h2>PNG Logo Fallback (White)</h2>
+        <p><strong>Path:</strong> ../assets/logos/logo-horizontal-white.png</p>
+        <img src="../assets/logos/logo-horizontal-white.png" alt="TruePath PNG Logo" style="height: 50px; border: 1px solid #ccc;">
+    </div>
+    
+    <div class="test-container dark-bg">
+        <h2>PNG Logo on Dark Background</h2>
+        <img src="../assets/logos/logo-horizontal-white.png" alt="TruePath PNG Logo" style="height: 50px; border: 1px solid #555;">
+    </div>
+    
+    <div class="test-container">
+        <h2>Alternative SVG Logo</h2>
+        <p><strong>Path:</strong> ../assets/logos/logo-horizontal-white.svg</p>
+        <img src="../assets/logos/logo-horizontal-white.svg" alt="TruePath Alternative SVG" style="height: 50px; border: 1px solid #ccc;">
+    </div>
+    
+    <div class="test-container">
+        <h2>Path Verification</h2>
+        <p><strong>Current working directory:</strong> /website/</p>
+        <p><strong>Target directory:</strong> ../assets/logos/</p>
+        <p><strong>Full path resolves to:</strong> /assets/logos/</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | TruePath Data Centers</title>
+    <style>
+        /* Anti-flash navigation protection - loads before any JS */
+        .global-nav,
+        .navbar,
+        nav {
+            background: rgba(10, 10, 10, 0.95) !important;
+            backdrop-filter: blur(20px) !important;
+        }
+        .global-nav *,
+        .navbar *,
+        nav * {
+            color: #b8b8b8 !important;
+            background: transparent !important;
+        }
+        .global-nav .nav-link:hover,
+        .global-nav .nav-link.active,
+        .navbar .nav-link:hover,
+        .navbar .nav-link.active,
+        nav .nav-link:hover,
+        nav .nav-link.active {
+            color: #d4af37 !important;
+        }
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #1a1a1a;
+            --accent-gold: #5DADE2;
+            --accent-blue: #5DADE2;
+            --text-primary: #ffffff;
+            --text-secondary: #666666;
+            --text-light: #b8b8b8;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: var(--primary-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            padding: 1rem 3rem;
+            background: rgba(26, 26, 26, 0.98);
+        }
+
+        nav.scrolled .logo img {
+            height: 35px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--accent-gold);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .page-hero {
+            position: relative;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            margin-top: 80px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23666" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 0 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 4rem;
+            font-weight: 200;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.2s forwards;
+        }
+
+        .page-hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.4s forwards;
+        }
+
+        /* Content Sections */
+        section {
+            padding: 6rem 3rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 200;
+            margin-bottom: 2rem;
+        }
+
+        /* Culture Section */
+        .culture-section {
+            background: #0a0a0a;
+        }
+
+        .culture-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .culture-intro p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .culture-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .culture-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+        }
+
+        .culture-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--accent-gold);
+            border-radius: 50%;
+        }
+
+        .culture-title {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .culture-description {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background: var(--primary-dark);
+        }
+
+        .benefits-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .benefits-text h3 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: var(--accent-gold);
+        }
+
+        .benefits-text p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .benefit-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--accent-gold);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .benefit-text h4 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .benefit-text p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        /* Positions Section */
+        .positions-section {
+            background: #0a0a0a;
+        }
+
+        .positions-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .position-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .position-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(10px);
+            border-color: var(--accent-gold);
+        }
+
+        .position-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.5rem;
+        }
+
+        .position-title {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--accent-gold);
+        }
+
+        .position-location {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .position-department {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(93, 173, 226, 0.1);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .position-description {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .position-requirements {
+            list-style: none;
+        }
+
+        .position-requirements li {
+            padding: 0.5rem 0;
+            color: var(--text-light);
+            display: flex;
+            align-items: start;
+            gap: 0.5rem;
+        }
+
+        .position-requirements li::before {
+            content: '•';
+            color: var(--accent-gold);
+            flex-shrink: 0;
+        }
+
+        /* Application Section */
+        .application-section {
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+            text-align: center;
+            padding: 8rem 3rem;
+        }
+
+        .application-content h2 {
+            font-size: 3.5rem;
+            font-weight: 200;
+            margin-bottom: 2rem;
+        }
+
+        .application-content p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .application-email {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .application-email:hover {
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 4rem 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: 0.1em;
+            }
+
+            .culture-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .benefits-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .benefits-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="TPDC-Style4-Home.html" class="logo">
+            <img src="truepath-logo-white.png" alt="TruePath Data Centers" style="height: 40px; width: auto;">
+        </a>
+        <ul class="nav-menu">
+            <li><a href="TPDC-Style4-Home.html">Home</a></li>
+            <li><a href="TPDC-Style4-About.html">About</a></li>
+            <li><a href="TPDC-Style4-Services.html">Services</a></li>
+            <li><a href="TPDC-Style4-Team.html">Team</a></li>
+            <li><a href="TPDC-Style4-Markets.html">Markets</a></li>
+            <li><a href="TPDC-Style4-Contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="page-hero-content">
+            <h1>Careers</h1>
+            <p class="page-hero-subtitle">Join the Team Building Tomorrow's Digital Infrastructure</p>
+        </div>
+    </section>
+
+    <!-- Culture Section -->
+    <section class="culture-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Why TruePath</p>
+                <h2 class="section-title">Our Culture & Values</h2>
+            </div>
+            <div class="culture-intro">
+                <p>
+                    At TruePath Data Centers, we're not just building data centers – we're creating the 
+                    foundation for the digital future. Join a team of industry veterans and innovators 
+                    who are passionate about excellence, driven by creativity, and committed to delivering 
+                    superior results.
+                </p>
+            </div>
+            <div class="culture-grid">
+                <div class="culture-card">
+                    <div class="culture-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="culture-title">Innovation First</h3>
+                    <p class="culture-description">
+                        Work with cutting-edge immersion cooling technology and be part of revolutionizing 
+                        how data centers are built and operated.
+                    </p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+                            <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M2 21V17C2 15.8954 2.89543 15 4 15H14C15.1046 15 16 15.8954 16 17V21" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="17" cy="7" r="3" stroke="currentColor" stroke-width="2"/>
+                            <path d="M20 15C21.1046 15 22 15.8954 22 17V21" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="culture-title">Expert Team</h3>
+                    <p class="culture-description">
+                        Learn from industry leaders with decades of experience at national laboratories 
+                        and hyperscale facilities.
+                    </p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="culture-title">Growth Impact</h3>
+                    <p class="culture-description">
+                        Be part of a rapidly growing company where your contributions directly impact 
+                        our success and the future of digital infrastructure.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Benefits & Perks</p>
+                <h2 class="section-title">What We Offer</h2>
+            </div>
+            <div class="benefits-content">
+                <div class="benefits-text">
+                    <h3>Comprehensive Benefits Package</h3>
+                    <p>
+                        We believe in taking care of our team members. Our benefits package is designed 
+                        to support your health, financial well-being, and professional growth.
+                    </p>
+                    <p>
+                        As a growing company, we offer competitive compensation, equity participation 
+                        opportunities, and the chance to shape the future of our organization.
+                    </p>
+                </div>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+                                <path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="benefit-text">
+                            <h4>Health & Wellness</h4>
+                            <p>Comprehensive medical, dental, and vision coverage</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="benefit-text">
+                            <h4>Flexible Schedule</h4>
+                            <p>Work-life balance with flexible hours</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+                                <path d="M12 2V22" stroke="currentColor" stroke-width="2"/>
+                                <path d="M17 5H9.5C8.11929 5 7 6.11929 7 7.5C7 8.88071 8.11929 10 9.5 10H14.5C15.8807 10 17 11.1193 17 12.5C17 13.8807 15.8807 15 14.5 15H7" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="benefit-text">
+                            <h4>Equity Participation</h4>
+                            <p>Share in the company's success</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+                                <path d="M12 2L2 7V12C2 16.5 4.23 20.68 7.62 23.15L12 24L16.38 23.15C19.77 20.68 22 16.5 22 12V7L12 2Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="benefit-text">
+                            <h4>Professional Development</h4>
+                            <p>Training and growth opportunities</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Positions Section -->
+    <section class="positions-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Open Positions</p>
+                <h2 class="section-title">Join Our Growing Team</h2>
+            </div>
+            <div class="positions-grid">
+                <div class="position-card">
+                    <div class="position-header">
+                        <div>
+                            <h3 class="position-title">Data Center Engineer</h3>
+                            <p class="position-location">Albuquerque, NM</p>
+                        </div>
+                        <span class="position-department">Engineering</span>
+                    </div>
+                    <p class="position-description">
+                        Join our engineering team to design and implement next-generation data center 
+                        infrastructure using immersion cooling technology. Work on cutting-edge projects 
+                        that push the boundaries of efficiency and performance.
+                    </p>
+                    <ul class="position-requirements">
+                        <li>5+ years data center engineering experience</li>
+                        <li>Knowledge of cooling systems and power distribution</li>
+                        <li>Experience with Tier 3/4 facility design</li>
+                        <li>Strong problem-solving and analytical skills</li>
+                    </ul>
+                </div>
+                <div class="position-card">
+                    <div class="position-header">
+                        <div>
+                            <h3 class="position-title">Project Manager</h3>
+                            <p class="position-location">Albuquerque, NM</p>
+                        </div>
+                        <span class="position-department">Operations</span>
+                    </div>
+                    <p class="position-description">
+                        Lead complex data center construction projects from inception to completion. 
+                        Coordinate with multiple stakeholders, manage timelines and budgets, and ensure 
+                        successful project delivery.
+                    </p>
+                    <ul class="position-requirements">
+                        <li>PMP certification preferred</li>
+                        <li>Experience with large-scale construction projects</li>
+                        <li>Strong leadership and communication skills</li>
+                        <li>Data center or mission-critical facility experience a plus</li>
+                    </ul>
+                </div>
+                <div class="position-card">
+                    <div class="position-header">
+                        <div>
+                            <h3 class="position-title">Business Development Manager</h3>
+                            <p class="position-location">Remote / Southwest Region</p>
+                        </div>
+                        <span class="position-department">Sales</span>
+                    </div>
+                    <p class="position-description">
+                        Drive growth by identifying and developing relationships with hyperscale operators, 
+                        enterprise clients, and strategic partners. Shape our market expansion across the 
+                        Southwest region.
+                    </p>
+                    <ul class="position-requirements">
+                        <li>Proven track record in data center or infrastructure sales</li>
+                        <li>Strong network in the technology industry</li>
+                        <li>Experience with complex B2B sales cycles</li>
+                        <li>Ability to travel throughout Southwest region</li>
+                    </ul>
+                </div>
+                <div class="position-card">
+                    <div class="position-header">
+                        <div>
+                            <h3 class="position-title">Financial Analyst</h3>
+                            <p class="position-location">Albuquerque, NM</p>
+                        </div>
+                        <span class="position-department">Finance</span>
+                    </div>
+                    <p class="position-description">
+                        Support our rapid growth with financial modeling, investment analysis, and 
+                        strategic planning. Work directly with leadership on capital raising and 
+                        investment strategies.
+                    </p>
+                    <ul class="position-requirements">
+                        <li>3+ years in real estate or infrastructure finance</li>
+                        <li>Strong financial modeling skills</li>
+                        <li>Experience with project finance preferred</li>
+                        <li>CFA or MBA a plus</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Section -->
+    <section class="application-section">
+        <div class="application-content">
+            <h2>Ready to Build the Future?</h2>
+            <p>
+                Send your resume and a cover letter explaining why you want to join TruePath 
+                Data Centers to our careers team.
+            </p>
+            <a href="mailto:careers@truepathdc.com" class="application-email">careers@truepathdc.com</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo" style="margin-bottom: 2rem; text-align: center;">
+                <img src="truepath-logo-white.png" alt="TruePath Data Centers" style="height: 50px; width: auto; opacity: 0.7;">
+            </div>
+            <div class="footer-links">
+                <a href="TPDC-Style4-About.html">About</a>
+                <a href="TPDC-Style4-Services.html">Services</a>
+                <a href="TPDC-Style4-Team.html">Team</a>
+                <a href="TPDC-Style4-Careers.html">Careers</a>
+                <a href="TPDC-Style4-Contact.html">Contact</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TruePath Data Centers. All rights reserved. | Albuquerque, New Mexico</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

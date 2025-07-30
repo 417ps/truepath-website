@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | TruePath Data Centers</title>
+    <style>
+        /* Anti-flash navigation protection - loads before any JS */
+        .global-nav,
+        .navbar,
+        nav {
+            background: rgba(10, 10, 10, 0.95) !important;
+            backdrop-filter: blur(20px) !important;
+        }
+        .global-nav *,
+        .navbar *,
+        nav * {
+            color: #b8b8b8 !important;
+            background: transparent !important;
+        }
+        .global-nav .nav-link:hover,
+        .global-nav .nav-link.active,
+        .navbar .nav-link:hover,
+        .navbar .nav-link.active,
+        nav .nav-link:hover,
+        nav .nav-link.active {
+            color: #d4af37 !important;
+        }
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #1a1a1a;
+            --accent-gold: #5DADE2;
+            --accent-blue: #5DADE2;
+            --text-primary: #ffffff;
+            --text-secondary: #666666;
+            --text-light: #b8b8b8;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: var(--primary-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            padding: 1rem 3rem;
+            background: rgba(26, 26, 26, 0.98);
+        }
+
+        nav.scrolled .logo img {
+            height: 35px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--accent-gold);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .page-hero {
+            position: relative;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            margin-top: 80px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23666" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 0 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 4rem;
+            font-weight: 200;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.2s forwards;
+        }
+
+        .page-hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.4s forwards;
+        }
+
+        /* Content Sections */
+        section {
+            padding: 6rem 3rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 200;
+            margin-bottom: 2rem;
+        }
+
+        /* Story Section */
+        .story-section {
+            background: #0a0a0a;
+        }
+
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: start;
+        }
+
+        .story-text h3 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: var(--accent-gold);
+        }
+
+        .story-text p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .story-stats {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 200;
+            color: var(--accent-gold);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            background: var(--primary-dark);
+        }
+
+        .mission-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .mission-statement {
+            font-size: 2rem;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--text-primary);
+            margin-bottom: 3rem;
+        }
+
+        .mission-statement strong {
+            color: var(--accent-gold);
+            font-weight: 400;
+        }
+
+        /* Values Grid */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 2rem 1rem;
+            transition: transform 0.3s;
+        }
+
+        .value-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--accent-gold);
+            border-radius: 50%;
+        }
+
+        .value-title {
+            font-size: 1rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .value-description {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Problem Solution Section */
+        .problem-section {
+            background: #0a0a0a;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+        }
+
+        .problem-content h3,
+        .solution-content h3 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: var(--accent-gold);
+        }
+
+        .problem-list,
+        .solution-list {
+            list-style: none;
+        }
+
+        .problem-list li,
+        .solution-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .list-icon {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 4rem 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: 0.1em;
+            }
+
+            .story-content,
+            .problem-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="TPDC-Style4-Home.html" class="logo">
+            <img src="truepath-logo-white.png" alt="TruePath Data Centers" style="height: 40px; width: auto;">
+        </a>
+        <ul class="nav-menu">
+            <li><a href="TPDC-Style4-Home.html">Home</a></li>
+            <li><a href="TPDC-Style4-About.html" class="active">About</a></li>
+            <li><a href="TPDC-Style4-Services.html">Services</a></li>
+            <li><a href="TPDC-Style4-Team.html">Team</a></li>
+            <li><a href="TPDC-Style4-Markets.html">Markets</a></li>
+            <li><a href="TPDC-Style4-Careers.html">Careers</a></li>
+            <li><a href="TPDC-Style4-Contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="page-hero-content">
+            <h1>About TruePath</h1>
+            <p class="page-hero-subtitle">Redefining Data Center Excellence Through Innovation and Expertise</p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Our Story</p>
+                <h2 class="section-title">Mission-Critical Expertise Meets Innovation</h2>
+            </div>
+            <div class="story-content">
+                <div class="story-text">
+                    <h3>Building the Future of Digital Infrastructure</h3>
+                    <p>
+                        Founded in 2024 and headquartered in Albuquerque, New Mexico, TruePath Data Centers 
+                        represents the convergence of decades of mission-critical data center expertise with 
+                        innovative real estate investment strategies.
+                    </p>
+                    <p>
+                        Our company operates as a vertically integrated real estate investment and development 
+                        firm specializing exclusively in data center facilities. Unlike traditional data center 
+                        builders who construct for others, TruePath maintains complete control from land 
+                        acquisition and power purchase agreements through construction, operation, and eventual 
+                        monetization of these critical infrastructure assets.
+                    </p>
+                    <p>
+                        We are building a company with diversified revenue streams within the data center 
+                        industry, positioning ourselves to capitalize on multiple opportunities across the 
+                        Southwest region.
+                    </p>
+                </div>
+                <div class="story-stats">
+                    <h3 style="text-align: center; margin-bottom: 2rem; color: var(--accent-gold);">By the Numbers</h3>
+                    <div class="stat-grid">
+                        <div class="stat">
+                            <div class="stat-number">$3B+</div>
+                            <div class="stat-label">Projects Managed</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">25+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Uptime Record</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">2024</div>
+                            <div class="stat-label">Founded</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Our Mission</p>
+                <h2 class="section-title">Driving Digital Infrastructure Forward</h2>
+            </div>
+            <div class="mission-content">
+                <p class="mission-statement">
+                    To develop <strong>industry-leading</strong>, operationally superior, and 
+                    <strong>investment-grade</strong> data centers in the Southwest United States 
+                    by leveraging technical expertise, creativity, and innovative investment 
+                    strategies to deliver <strong>superior returns</strong> while advancing the 
+                    nation's digital infrastructure.
+                </p>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 7C12 7 9 10 9 12C9 14 10.5 15.5 12 15.5C13.5 15.5 15 14 15 12C15 10 12 7 12 7Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="value-title">People First</h3>
+                        <p class="value-description">
+                            Prioritizing our team, partners, and investors above all else
+                        </p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="value-title">Creativity</h3>
+                        <p class="value-description">
+                            Innovation drives our competitive advantage
+                        </p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+                                <rect x="3" y="3" width="18" height="18" stroke="currentColor" stroke-width="2"/>
+                                <path d="M9 11L12 14L16 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="value-title">Quality</h3>
+                        <p class="value-description">
+                            Excellence in execution is non-negotiable
+                        </p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+                                <path d="M12 2L2 7V12C2 16.5 4.23 20.68 7.62 23.15L12 24L16.38 23.15C19.77 20.68 22 16.5 22 12V7L12 2Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="value-title">Knowledge</h3>
+                        <p class="value-description">
+                            Continuous learning sustains market leadership
+                        </p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="value-title">Financial Stability</h3>
+                        <p class="value-description">
+                            Sound management ensures long-term success
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Solution Section -->
+    <section class="problem-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">The Challenge</p>
+                <h2 class="section-title">Problems We Solve</h2>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-content">
+                    <h3>Industry Challenges</h3>
+                    <ul class="problem-list">
+                        <li>
+                            <span class="list-icon">✕</span>
+                            US must triple data center capacity by 2030 to meet AI demands
+                        </li>
+                        <li>
+                            <span class="list-icon">✕</span>
+                            Traditional markets face land, power, and regulatory constraints
+                        </li>
+                        <li>
+                            <span class="list-icon">✕</span>
+                            Average PUE of 1.40+ results in excessive operating costs
+                        </li>
+                        <li>
+                            <span class="list-icon">✕</span>
+                            Conventional cooling consumes unsustainable water resources
+                        </li>
+                        <li>
+                            <span class="list-icon">✕</span>
+                            Lengthy construction timelines fail to match market velocity
+                        </li>
+                    </ul>
+                </div>
+                <div class="solution-content">
+                    <h3>Our Solutions</h3>
+                    <ul class="solution-list">
+                        <li>
+                            <span class="list-icon">✓</span>
+                            8-10x footprint reduction through immersion cooling
+                        </li>
+                        <li>
+                            <span class="list-icon">✓</span>
+                            Industry-leading PUE of 1.03 for optimal efficiency
+                        </li>
+                        <li>
+                            <span class="list-icon">✓</span>
+                            90% reduction in water consumption
+                        </li>
+                        <li>
+                            <span class="list-icon">✓</span>
+                            Accelerated deployment timelines
+                        </li>
+                        <li>
+                            <span class="list-icon">✓</span>
+                            Southwest advantages: lower costs, better climate, tax benefits
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo" style="margin-bottom: 2rem; text-align: center;">
+                <img src="truepath-logo-white.png" alt="TruePath Data Centers" style="height: 50px; width: auto; opacity: 0.7;">
+            </div>
+            <div class="footer-links">
+                <a href="TPDC-Style4-About.html">About</a>
+                <a href="TPDC-Style4-Services.html">Services</a>
+                <a href="TPDC-Style4-Team.html">Team</a>
+                <a href="TPDC-Style4-Careers.html">Careers</a>
+                <a href="TPDC-Style4-Contact.html">Contact</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TruePath Data Centers. All rights reserved. | Albuquerque, New Mexico</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team | TruePath Data Centers</title>
+    <style>
+        /* Anti-flash navigation protection - loads before any JS */
+        .global-nav,
+        .navbar,
+        nav {
+            background: rgba(10, 10, 10, 0.95) !important;
+            backdrop-filter: blur(20px) !important;
+        }
+        .global-nav *,
+        .navbar *,
+        nav * {
+            color: #b8b8b8 !important;
+            background: transparent !important;
+        }
+        .global-nav .nav-link:hover,
+        .global-nav .nav-link.active,
+        .navbar .nav-link:hover,
+        .navbar .nav-link.active,
+        nav .nav-link:hover,
+        nav .nav-link.active {
+            color: #d4af37 !important;
+        }
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #1a1a1a;
+            --accent-gold: #5DADE2;
+            --accent-blue: #5DADE2;
+            --text-primary: #ffffff;
+            --text-secondary: #666666;
+            --text-light: #b8b8b8;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: var(--primary-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            padding: 1rem 3rem;
+            background: rgba(26, 26, 26, 0.98);
+        }
+
+        nav.scrolled .logo img {
+            height: 35px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--accent-gold);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .page-hero {
+            position: relative;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            margin-top: 80px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23666" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 0 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 4rem;
+            font-weight: 200;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.2s forwards;
+        }
+
+        .page-hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.4s forwards;
+        }
+
+        /* Content Sections */
+        section {
+            padding: 6rem 3rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 200;
+            margin-bottom: 2rem;
+        }
+
+        /* Leadership Section */
+        .leadership-section {
+            background: #0a0a0a;
+        }
+
+        .leadership-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .leadership-intro p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            margin-bottom: 6rem;
+        }
+
+        .team-member {
+            display: flex;
+            gap: 3rem;
+            align-items: start;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .team-member:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+        }
+
+        .member-avatar {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #333, #555);
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-avatar::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(93, 173, 226, 0.3));
+        }
+
+        .member-info {
+            flex: 1;
+        }
+
+        .member-name {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            color: var(--accent-gold);
+        }
+
+        .member-title {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .member-company {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .member-bio {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .member-bio ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .member-bio li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: start;
+            gap: 0.5rem;
+        }
+
+        .member-bio li::before {
+            content: '→';
+            color: var(--accent-gold);
+            flex-shrink: 0;
+        }
+
+        /* Senior Advisor Special */
+        .senior-advisor {
+            grid-column: 1 / -1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Combined Experience Section */
+        .experience-section {
+            background: var(--primary-dark);
+        }
+
+        .experience-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .experience-stat {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .experience-stat:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--accent-gold);
+            border-radius: 50%;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 200;
+            color: var(--accent-gold);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 4rem 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: 0.1em;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .team-member {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .experience-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="TPDC-Style4-Home.html" class="logo">
+            <img src="truepath-logo-white.png" alt="TruePath Data Centers" style="height: 40px; width: auto;">
+        </a>
+        <ul class="nav-menu">
+            <li><a href="TPDC-Style4-Home.html">Home</a></li>
+            <li><a href="TPDC-Style4-About.html">About</a></li>
+            <li><a href="TPDC-Style4-Services.html">Services</a></li>
+            <li><a href="TPDC-Style4-Team.html" class="active">Team</a></li>
+            <li><a href="TPDC-Style4-Markets.html">Markets</a></li>
+            <li><a href="TPDC-Style4-Careers.html">Careers</a></li>
+            <li><a href="TPDC-Style4-Contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="page-hero-content">
+            <h1>Our Team</h1>
+            <p class="page-hero-subtitle">Industry Veterans with Proven Track Records</p>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="leadership-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Leadership</p>
+                <h2 class="section-title">Experienced Industry Leaders</h2>
+            </div>
+            <div class="leadership-intro">
+                <p>
+                    TruePath Data Centers has assembled a founding team of industry veterans with 
+                    complementary expertise spanning every critical aspect of data center development, 
+                    construction, and operation.
+                </p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
+                            <circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 14H8C6.89543 14 6 14.8954 6 16V21H18V16C18 14.8954 17.1046 14 16 14Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Michael Sanchez</h3>
+                        <p class="member-title">Founder & CEO</p>
+                        <p class="member-company">MTI NM (Management That Is LLC)</p>
+                        <div class="member-bio">
+                            <p>Michael brings over 20 years of data center expertise combined with proven real estate investment success.</p>
+                            <ul>
+                                <li>Scaled Cross Connection from $4M to $30M annual revenue</li>
+                                <li>PMP certification with extensive data center project leadership</li>
+                                <li>Successful real estate investment portfolio development</li>
+                                <li>Primary capital raiser and visionary for TruePath Data Centers</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
+                            <circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 14H8C6.89543 14 6 14.8954 6 16V21H18V16C18 14.8954 17.1046 14 16 14Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Mark Sanchez</h3>
+                        <p class="member-title">Chief Development Officer</p>
+                        <p class="member-company">20Twenty Construction</p>
+                        <div class="member-bio">
+                            <p>Founded in 2019, 20Twenty Construction serves as both general contractor and mechanical contractor with specialized expertise in data center cooling systems.</p>
+                            <ul>
+                                <li>25+ years complete data center lifecycle experience</li>
+                                <li>Four years operating Los Alamos National Laboratory supercomputing facilities</li>
+                                <li>Expertise in mechanical cooling, plumbing, HVAC, and gas line installations</li>
+                                <li>Proven ability to deliver projects on time and budget</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
+                            <circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 14H8C6.89543 14 6 14.8954 6 16V21H18V16C18 14.8954 17.1046 14 16 14Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Jarett Granich</h3>
+                        <p class="member-title">Chief Operating Officer</p>
+                        <p class="member-company">Granalytich Solutions</p>
+                        <div class="member-bio">
+                            <p>Jarett's expertise in project controls and risk management stems from progressive leadership roles across critical infrastructure.</p>
+                            <ul>
+                                <li>Former lead controller/scheduler for Los Alamos National Laboratory</li>
+                                <li>Infrastructure program management for City of Denver utilities</li>
+                                <li>Project Management Professional (PMP) certification</li>
+                                <li>Specialized in risk assessment and schedule optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
+                            <circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 14H8C6.89543 14 6 14.8954 6 16V21H18V16C18 14.8954 17.1046 14 16 14Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Dylan James</h3>
+                        <p class="member-title">Chief Technology Officer</p>
+                        <p class="member-company">Echo.io</p>
+                        <div class="member-bio">
+                            <p>At 27, Dylan represents the next generation of technology leadership, combining mechanical engineering expertise with cutting-edge AI knowledge.</p>
+                            <ul>
+                                <li>Deep understanding of AI infrastructure requirements</li>
+                                <li>Real estate investment acumen</li>
+                                <li>Leading AI integration across all TruePath operations</li>
+                                <li>Bridging traditional construction with emerging technologies</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member senior-advisor">
+                    <div class="member-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
+                            <circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 14H8C6.89543 14 6 14.8954 6 16V21H18V16C18 14.8954 17.1046 14 16 14Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Ron Velarde</h3>
+                        <p class="member-title">Senior Technical Advisor</p>
+                        <p class="member-company">New Mexico Data Center Solutions</p>
+                        <div class="member-bio">
+                            <p>Ron brings unparalleled expertise from 35 years in data center development, serving as our senior technical advisor.</p>
+                            <ul>
+                                <li>Over $3 billion in data center project management</li>
+                                <li>Complete facility lifecycle expertise from design through operations</li>
+                                <li>Tier 4 mission-critical facility operations with zero-downtime requirements</li>
+                                <li>Deep vendor and technology relationships</li>
+                                <li>CPU/GPU selection and infrastructure optimization expertise</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Combined Experience Section -->
+    <section class="experience-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Collective Expertise</p>
+                <h2 class="section-title">Combined Team Experience</h2>
+            </div>
+            <div class="experience-stats">
+                <div class="experience-stat">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+                            <path d="M12 2V22" stroke="currentColor" stroke-width="2"/>
+                            <path d="M17 5H9.5C8.11929 5 7 6.11929 7 7.5C7 8.88071 8.11929 10 9.5 10H14.5C15.8807 10 17 11.1193 17 12.5C17 13.8807 15.8807 15 14.5 15H7" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="stat-number">$3B+</div>
+                    <div class="stat-label">Projects Delivered</div>
+                </div>
+                <div class="experience-stat">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Years Combined</div>
+                </div>
+                <div class="experience-stat">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+                            <path d="M12 2L2 7V12C2 16.5 4.23 20.68 7.62 23.15L12 24L16.38 23.15C19.77 20.68 22 16.5 22 12V7L12 2Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Uptime Record</div>
+                </div>
+                <div class="experience-stat">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+                            <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 5.58172 6.58172 2 11 2C12.3256 2 13.5978 2.36804 14.7084 3.04116C15.1622 3.30943 15.588 3.62436 15.978 3.97925C17.1228 5.05343 18 6.44772 18 8C18 11 16 13 12 13C8 13 6 11 6 8C6 5 8 3 11 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">States Coverage</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo" style="margin-bottom: 2rem; text-align: center;">
+                <img src="truepath-logo-white.png" alt="TruePath Data Centers" style="height: 50px; width: auto; opacity: 0.7;">
+            </div>
+            <div class="footer-links">
+                <a href="TPDC-Style4-About.html">About</a>
+                <a href="TPDC-Style4-Services.html">Services</a>
+                <a href="TPDC-Style4-Team.html">Team</a>
+                <a href="TPDC-Style4-Careers.html">Careers</a>
+                <a href="TPDC-Style4-Contact.html">Contact</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TruePath Data Centers. All rights reserved. | Albuquerque, New Mexico</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
