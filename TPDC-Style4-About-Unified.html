@@ -210,23 +210,94 @@
         }
 
         .story-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            align-items: start;
+            margin-top: 3rem;
         }
 
-        .story-text h3 {
-            font-size: 2rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
+        .story-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .pillar {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-gold);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+            transform-origin: left;
+        }
+
+        .pillar:hover::before {
+            transform: scaleX(1);
+        }
+
+        .pillar:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .pillar-icon {
+            margin: 0 auto 2rem;
             color: var(--accent-gold);
         }
 
-        .story-text p {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
+        .pillar h3 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .pillar h4 {
             font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .pillar p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        .pillar-highlights {
+            list-style: none;
+            text-align: left;
+        }
+
+        .pillar-highlights li {
+            padding: 0.5rem 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .pillar-highlights li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
         }
 
 
@@ -738,6 +809,14 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .story-pillars {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .pillar {
+                padding: 2rem 1.5rem;
+            }
             .nav-menu {
                 display: none;
             }
@@ -807,23 +886,68 @@
                 <h2 class="section-title">From National Laboratory Excellence to Commercial Innovation</h2>
             </div>
             <div class="story-content">
-                <div class="story-text">
-                    <h3>Forged in the Labs, Built for the Future</h3>
-                    <p>
-                        Founded in 2024 and headquartered in Albuquerque, New Mexico, TruePath Data Centers 
-                        represents the convergence of decades of mission-critical data center expertise with 
-                        innovative real estate investment strategies.
-                    </p>
-                    <p>
-                        Our team brings together over 25 years of hands-on experience building, retrofitting, 
-                        designing, operating, and maintaining data centers for supercomputing facilities at 
-                        Los Alamos and Sandia National Laboratories.
-                    </p>
-                    <p>
-                        Unlike traditional data center builders who construct for others, TruePath maintains 
-                        complete control from land acquisition and power purchase agreements through construction, 
-                        operation, and eventual monetization of these critical infrastructure assets.
-                    </p>
+                <div class="story-pillars">
+                    <div class="pillar">
+                        <div class="pillar-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="50" height="50">
+                                <path d="M12 2L2 7V12C2 16.5 4.23 20.68 7.62 23.15L12 24L16.38 23.15C19.77 20.68 22 16.5 22 12V7L12 2Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 8V16" stroke="currentColor" stroke-width="2"/>
+                                <path d="M8 12H16" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3>Heritage</h3>
+                        <h4>National Laboratory Excellence</h4>
+                        <p>
+                            Over 25 years of hands-on experience building and operating supercomputing facilities 
+                            at Los Alamos and Sandia National Laboratories. Our team has managed mission-critical 
+                            infrastructure where 100% uptime isn't a goal—it's a requirement.
+                        </p>
+                        <ul class="pillar-highlights">
+                            <li>$3B+ in projects managed</li>
+                            <li>Tier 4 facility operations</li>
+                            <li>Zero-downtime expertise</li>
+                        </ul>
+                    </div>
+                    <div class="pillar">
+                        <div class="pillar-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="50" height="50">
+                                <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Innovation</h3>
+                        <h4>Vertical Integration Model</h4>
+                        <p>
+                            Unlike traditional builders who construct for others, TruePath maintains complete 
+                            control from land acquisition through monetization. This ownership model aligns our 
+                            interests with long-term performance and reliability.
+                        </p>
+                        <ul class="pillar-highlights">
+                            <li>End-to-end ownership</li>
+                            <li>Immersion cooling technology</li>
+                            <li>8-10x footprint reduction</li>
+                        </ul>
+                    </div>
+                    <div class="pillar">
+                        <div class="pillar-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="50" height="50">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 2C12 7 16 12 22 12" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3>Vision</h3>
+                        <h4>Southwest Digital Future</h4>
+                        <p>
+                            Founded in 2024 in Albuquerque, we're positioned to capitalize on the Southwest's 
+                            emergence as the next great data center hub. Lower costs, ideal climate, and strategic 
+                            location create unprecedented opportunities.
+                        </p>
+                        <ul class="pillar-highlights">
+                            <li>Strategic Southwest focus</li>
+                            <li>30-50% cost advantages</li>
+                            <li>Sustainable operations</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
